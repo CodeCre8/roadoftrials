@@ -3,7 +3,10 @@ const grid = document.querySelector('.game-grid')
 const gameBtn = document.querySelector('button')
 const score = document.querySelector('.score')
 let squares = []
-let currentSnake = [0,1,2]
+let currentSnake = [2,1,0]
+let direction = 1
+let width = 100
+let appleIndex = 0
 
 //Create grid
 function createGrid() {
@@ -18,12 +21,37 @@ function createGrid() {
     //Create an array of squares
     squares.push(square)
   }
-  console.log(squares)
 }
-
 createGrid()
 
 //Create snake
 currentSnake.forEach(index => squares[index].classList.add('snake'))
 
-console.log(currentSnake)
+
+//Move snake
+function move() {
+  //Remove the last element from the currentSnake array
+  const tail = currentSnake.pop()
+  //Remove the last square style
+  squares[tail].classList.remove('snake')
+  //Add square in the direction that the snake is moving
+  currentSnake.unshift(currentSnake[0] + direction)
+  //Add style to see the square 
+  squares[currentSnake[0]].classList.add('snake')
+}
+
+move()
+
+// Set the snake to move at a specific time interval
+setInterval(move, 1000)
+
+
+//Create apples
+function createApple() {
+  //Get a random position between 0-100 for apple
+  appleIndex = Math.floor(Math.random() * width)
+  
+  //Create the apple element
+  squares[appleIndex].classList.add('apple')  
+}
+createApple()

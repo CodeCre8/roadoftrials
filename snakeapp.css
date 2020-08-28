@@ -54,11 +54,14 @@ button {
 }
 
 .game-square {
-  /* background-color: #ff0000; */
   width: 20px;
   height: 20px;
 }
 
 .snake {
   background-color: #00ff00;
+}
+
+.apple {
+  background-color: red;
 }
