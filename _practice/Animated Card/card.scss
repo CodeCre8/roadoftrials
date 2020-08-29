@@ -9,9 +9,11 @@
   --clr-lt: rgb(255, 255, 255);
   --clr-accent-dk: rgb(222, 52, 0);
   --clr-accent-lt: rgb(163, 38, 0);
-  --clr-secondary: rgb(0, 62, 163);
+  --clr-secondary: rgb(23, 93, 207);
 
   --br: .5em;
+
+  --card-transition: transform 250ms cubic-bezier(.33,.78,.53,1.05);
 }
 
 body {
@@ -34,6 +36,26 @@ img {
   max-width: 100%;
 }
 
+.icon-before::before {
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn {
+  cursor: pointer;
+  padding: .5em 1.25em;
+  border: 0;
+  border-radius: 100vw;
+  font-weight: bold; 
+  background-color: var(--clr-secondary);
+  color: var(--clr-lt);
+}
+
 .game {
   position: relative;
   width: 12.5em;
@@ -41,6 +63,7 @@ img {
 
 .streamers {
   display: flex;
+  text-align: center;
 
   img {
     width: 2em;
@@ -58,12 +81,16 @@ img {
   font-size: 1.125rem;
   background: rgba(0, 0, 0, 0.5);
   clip-path: polygon(100% 0%, 100% 100%, 50% 80%, 0 100%, 0% 50%, 0 0);
+  z-index: 1000;
 }
 
 .front {
+  transition: 250ms;
+
   .thumbnails {
     border-radius: var(--br);
   }
+
   .name {
     margin: .75em 0;
   }
@@ -72,6 +99,19 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .viewers {
+      display: flex;
+      align-items: center;
+    }
+
+    .viewers::before {
+      font-size: 0.75rem;
+      margin-right: 0.5em;
+      padding-bottom: .15em;
+      color: rgba(255, 255, 255, .75);
+      content: "\f007";
+    }
   }
 
   .streamers img {
@@ -89,5 +129,116 @@ img {
 }
 
 .back {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  gap: 1em;
+  transition: translateY(35%);
+
+  .streaming-info {
+    columns: 2;
+    column-rule: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .game-stat {
+    font-size: .95rem;
+    text-align: center;
+
+    span {
+      display: block;
+      font-size: .65rem;
+      color: rgba(255, 255, 255, .5)
+    }
+  }
+
+  .streamers {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .streamer {
+    font-size: .8rem;
+
+    .name {
+      font-weight: bold;
+    }
+  }
+}
+
+.background {
+  background-color: rgb(43, 52, 61);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(.2, .9);
+  border-radius: var(--br);
+}
+
+.game:hover {
+  .rank {
+    transform: translate(92%, -68%);
+    transition: var(--card-transition);
+  }
+
+  .front {
+    transform: translateY(-30%) scale(.8);
+
+    .name {
+      animation: gameNames 250ms forwards;
+    }
+
+    .stats {
+      opacity: 0;
+    }
+  }
+
+  .back {
+    opacity: 1;
+    transition: 
+      transform 250ms ease, 
+      opacity 150ms linear;
+    transform: translateY(0);
+  }
+
+  .background {
+    transform: scale(1.2, 1.2);
+    opacity: 1;
+    transition:
+      opacity 100ms linear,
+      var(--card-transition);
+    
+  }
+}
+
+@keyframes gameNames {
+  0% {
+    text-align: left;
+    opacity: 1;
+  }
+
+  30% {
+    text-align: left;
+    opacity: 0;
+  }
+
+  60% {
+    text-align: center;
+    opacity: 0;
+    transform: scale(1.2);
+  }
+
+  100% {
+    text-align: center;
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
