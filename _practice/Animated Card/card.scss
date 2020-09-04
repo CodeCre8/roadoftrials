@@ -36,7 +36,8 @@ img {
   max-width: 100%;
 }
 
-.icon-before::before {
+.icon-before::before,
+.icon::before {
   font-family: "Font Awesome 5 Free"; 
   font-weight: 900;
   display: inline-block;
@@ -66,9 +67,9 @@ img {
   text-align: center;
 
   img {
+    border-radius: 50%;
     width: 2em;
     height: 2em;
-    border-radius: 50%;
   }
 }
 
@@ -163,11 +164,75 @@ img {
 
   .streamer {
     font-size: .8rem;
+    display: grid;
+    place-items: center;
+
+    .icon {
+      width: 2em;
+      height: 2em;
+      position: relative;
+      transition: transform ease-in-out 200ms;
+    }
+  
+    .icon::before,
+    .icon::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .icon::before {
+      content: "\f04b";
+      font-size: .5em;
+      background-color: red;
+      display: grid;
+      place-items: center;
+      z-index: 10;
+      transition: background-color 100ms linear;
+    }
+
+    .icon:hover::before {
+      background: rgb(196, 6, 6);
+    }
+
+    .icon:hover::after {
+      background-color: rgb(95, 13, 13);
+      z-index: 1;
+      animation: pulse 1250ms infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(.9);
+        opacity: .75;
+      }
+      100% {
+        transform: scale(1.75);
+        opacity: 0;
+      }
+    }
 
     .name {
       font-weight: bold;
     }
   }
+
+  .streamer:hover .icon {
+    transform: translateY(-20%);
+  }
+
+  .streamer:hover .icon::before {
+    opacity: 1;
+  }
+
+  .streamer .icon:hover{
+      transform: translateY(-20%) scale(1.2);
+    }
 }
 
 .background {

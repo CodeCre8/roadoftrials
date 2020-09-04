@@ -36,7 +36,8 @@ img {
   max-width: 100%;
 }
 
-.icon-before::before {
+.icon-before::before,
+.icon::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   display: inline-block;
@@ -69,9 +70,9 @@ img {
 }
 
 .streamers img {
+  border-radius: 50%;
   width: 2em;
   height: 2em;
-  border-radius: 50%;
 }
 
 .rank {
@@ -192,10 +193,98 @@ img {
 
 .back .streamer {
   font-size: .8rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.back .streamer .icon {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  -webkit-transition: -webkit-transform ease-in-out 200ms;
+  transition: -webkit-transform ease-in-out 200ms;
+  transition: transform ease-in-out 200ms;
+  transition: transform ease-in-out 200ms, -webkit-transform ease-in-out 200ms;
+}
+
+.back .streamer .icon::before,
+.back .streamer .icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.back .streamer .icon::before {
+  content: "\f04b";
+  font-size: .5em;
+  background-color: red;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  -webkit-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+}
+
+.back .streamer .icon:hover::before {
+  background: #c40606;
+}
+
+.back .streamer .icon:hover::after {
+  background-color: #5f0d0d;
+  z-index: 1;
+  -webkit-animation: pulse 1250ms infinite;
+          animation: pulse 1250ms infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    opacity: .75;
+  }
+  100% {
+    -webkit-transform: scale(1.75);
+            transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    opacity: .75;
+  }
+  100% {
+    -webkit-transform: scale(1.75);
+            transform: scale(1.75);
+    opacity: 0;
+  }
 }
 
 .back .streamer .name {
   font-weight: bold;
+}
+
+.back .streamer:hover .icon {
+  -webkit-transform: translateY(-20%);
+          transform: translateY(-20%);
+}
+
+.back .streamer:hover .icon::before {
+  opacity: 1;
+}
+
+.back .streamer .icon:hover {
+  -webkit-transform: translateY(-20%) scale(1.2);
+          transform: translateY(-20%) scale(1.2);
 }
 
 .background {

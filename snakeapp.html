@@ -9,15 +9,25 @@
 </head>
 <body>
   <main role="content">
-    <!-- title -->
-    <h1>Snake Game</h1>
-    <!-- button -->
-    <button>Start/Reset</button>
-    <!-- score -->
-    <h2>Score: <span class="score">0</span></h2>
-    <!-- grid -->
-    <div class="game-grid"></div>
+
+    <!-- front -->
+    <div class="front">
+      <div class="thumbnail"></div>
+      <!-- <img src="" alt="game cover" > -->
+      <div class="name"><h2>Snake Game</h2></div>
+      <div class="score">
+        <p class="score-display">0</p>
+      </div>
+      <button class="btn">Eat Some Apples</button>
+    </div>
+
+    <!-- game -->
+    <div class="game">
+        <h2>Score: <span class="score">0</span></h2>
+        <div class="game-grid"></div>
+        <div class="game-bkgd"></div>
+    </div>
   </main> 
-  <script src="snakeapp.js"></script>
+  <script src="_snakeapp.js"></script>
 </body>
 </html>

@@ -1,0 +1,94 @@
+:root {
+  --clr-dk: #234D20;
+  --clr-lt: #C9DF8A;
+  --clr-accent-dk: #36802D;
+  --clr-accent-lt: #F0F7DA;
+
+  --clr-apple: #800000;
+
+  --round-corner: .5em;
+
+  --clr-gradient: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
+
+*,
+*::before,
+*::after {
+  font-size: 66.25%;
+  /* box-sizing: border-box; */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--main-dark);
+  color: var(--main-dark);
+}
+
+main {
+  width: 80%;
+  max-width: 800px;
+  height: 100vh;
+  margin: 5em auto;
+  padding: 5em;
+  background-color: var(--main-light);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 2rem;
+}
+
+button {
+  font-size: 2rem;
+}
+
+/* Snake
+===================================*/
+.thumbnail {
+  clip-path: polygon(36% 0, 46% 9%, 59% 16%, 67% 9%, 77% 4%, 90% 6%, 100% 22%, 89% 31%, 76% 33%, 87% 40%, 100% 31%, 96% 42%, 85% 50%, 69% 46%, 59% 34%, 49% 30%, 42% 37%, 37% 45%, 38% 56%, 51% 66%, 64% 68%, 80% 74%, 89% 80%, 94% 86%, 94% 96%, 88% 100%, 74% 100%, 55% 100%, 45% 100%, 35% 100%, 19% 98%, 8% 92%, 0 82%, 0 69%, 3% 57%, 14% 51%, 9% 63%, 7% 73%, 12% 80%, 21% 88%, 29% 91%, 41% 91%, 66% 92%, 74% 88%, 66% 82%, 56% 79%, 45% 76%, 33% 69%, 25% 59%, 21% 48%, 11% 40%, 6% 31%, 6% 18%, 14% 6%, 25% 0);
+  width: 120px;
+  height: 120px;
+  display: inline-block;
+  background-image: var(--clr-gradient);
+}
+
+/* Game
+===================================*/
+.game-grid {
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--main-dark);
+  display: flex;
+  flex-flow: wrap;
+  background-image: var(--clr-gradient);
+}
+
+.game-square {
+  width: 20px;
+  height: 20px;
+}
+
+.game-bkgd {
+  transform: scale(1.5);
+}
+
+
+.snake {
+  background-color: #00ff00;
+}
+
+.apple {
+  background-color: red;
+}

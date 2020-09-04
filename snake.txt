@@ -1,0 +1,55 @@
+=========================================
+<===============SNAKE APP===============>
+=========================================
+
+WHAT I WILL LEARN:
+.addEventListener()
+.querySelectorAll()
+.querySelector()
+.length
+.forEach()
+clearInterval()
+.push()
+.classList.add()
+.classList.remove()
+.keyCode
+.classList.contains()
+.innerText
+setTimeout()
+.textContext
+.unshift()
+.pop()
+setInterval()
+Math.floor()
+Math.random()
+
+WHAT ARE THE RULES?
+- A snake
+- An apple
+- The snake moves constantly once the game started
+- The snake eats the apple for scoring
+- Add point after eating an apple
+- The game stops when the snake runs into a wall 
+
+WHAT DOES JS CREATE?
+- Pick out HTML elements
+- Add squares to the grid
+- Draw a 3-square snake
+- Create the snake movement
+	> Drop the tail
+	> Add a sqaure in the front
+- Move the snake
+- Change snake direction
+
+
+
+
+
+
+
+
+
+
+
+
+
