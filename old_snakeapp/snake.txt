@@ -31,15 +31,47 @@ WHAT ARE THE RULES?
 - Add point after eating an apple
 - The game stops when the snake runs into a wall 
 
-WHAT DOES JS CREATE?
+How does the game work?
+- Begin game: Press "Start/Reset" button  
+- Use arrow keys to control snake movement
+
+Steps to create snake game?
 - Pick out HTML elements
-- Add squares to the grid
-- Draw a 3-square snake
-- Create the snake movement
-	> Drop the tail
-	> Add a sqaure in the front
-- Move the snake
-- Change snake direction
+- Create grid: Add squares to the grid
+- Create snake: Draw a 3-square snake
+- Start of game
+	> Move Snake
+		* Drop the tail
+		* Add a sqaure in the front
+	> Add apple randomly
+		* Check to make sure none of the sqaure is part of the snake
+- Control snake direction
+- Check to see if game is over
+	> Hit top
+	> Hit bottom
+	> Hit left
+	> Hit right
+	> Run into itself
+- When snake eats an apple
+  > Remove apple
+  > Add one square to snake
+  > Generate a new apple
+  > Add 1 to score
+  > Speed up the game
+- Click Start/Reset button
+	> Reset elements
+		* Score
+		* Snake
+		* Apple
+		* Speed
+
+
+
+
+
+
+
+
 
 
 

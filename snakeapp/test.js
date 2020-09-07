@@ -75,6 +75,8 @@ function generateApple() {
   }
 }
 
+generateApple()
+
 //Events happen when the Start/Reset button is clicked
 function startGame() {
   //Reset elements
