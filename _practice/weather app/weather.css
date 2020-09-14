@@ -1,0 +1,143 @@
+:root {
+  --clr-dk-blue: #304754;
+  --clr-dk-grey: #313131;
+  --clr-white: #fff;
+  --br: 16px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 62.5%;
+  background-image: url("bkgd.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+}
+
+.app-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.6)));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5em 1.5em 1.5em;
+}
+
+header input {
+  width: 100%;
+  max-width: 280px;
+  padding: 1em 1.5em;
+  border: none;
+  outline: none;
+  border-radius: var(--br) 0 var(--br) 0;
+  border-bottom: 3px solid var(--clr-dk-blue);
+  background-color: rgba(255, 255, 255, 0.3);
+  color: var(--clr-dk-grey);
+  font-size: 1rem;
+  font-weight: 300;
+  -webkit-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+
+header input:focus {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  padding: 1.5em 1.5em 5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+main .location .city,
+main .location .date {
+  color: var(--clr-white);
+}
+
+main .location .city {
+  font-size: clamp(1.8rem, 2.4vw, 3.2rem);
+  font-weight: 500;
+  margin-bottom: .5em;
+}
+
+main .location .date {
+  font-size: clamp(1rem, 1.4vw, 2rem);
+}
+
+main .current .temp,
+main .current .weather,
+main .current .hi-low {
+  color: var(--clr-white);
+}
+
+main .current .temp {
+  font-size: 10.2rem;
+  font-weight: 900;
+  margin: 0.18em 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+main .current .temp span {
+  font-size: 7rem;
+  font-weight: 300;
+  text-shadow: 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+main .current .weather {
+  font-size: clamp(1.5rem, 2.4vw, 3rem);
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 0.15em;
+  text-shadow: 2px 6px rgba(0, 0, 0, 0.4);
+  text-transform: capitalize;
+}
+
+main .current .hi-low {
+  font-size: clamp(1.5rem, 3vw, 3.2rem);
+  font-weight: 500;
+  margin: 1em;
+  text-shadow: 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+main .current .hi-low .symbol {
+  font-size: clamp(1.2rem, 2vw, 2.8rem);
+}
+/*# sourceMappingURL=weather.css.map */
