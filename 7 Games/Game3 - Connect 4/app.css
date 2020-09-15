@@ -1,0 +1,38 @@
+/* Variables
+------------------------------------- */
+:root {
+  --main-accent: #333;
+  --bgd-player1: red;
+  --bgd-player2: blue;
+}
+/* Reset
+------------------------------------- */
+* {
+  /* box-sizing: border-box; */
+  margin: 0;
+  padding: 0;
+}
+/* Default
+------------------------------------- */
+body {
+  font-family: Arial, sans-serif;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #000;
+  width: 140px;
+  height: 120px;
+}
+.grid div {
+  width: 20px;
+  height: 20px;
+}
+.player-one {
+  background-color: var(--bgd-player1);
+  border-radius: 10px;
+}
+.player-two {
+  background-color: var(--bgd-player2);
+  border-radius: 10px;
+}

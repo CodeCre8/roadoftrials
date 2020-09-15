@@ -1,0 +1,36 @@
+/* Variables
+------------------------------------- */
+:root {
+  --main-accent: #333;
+  --bgd-player1: red;
+  --bgd-player2: blue;
+}
+/* Reset
+------------------------------------- */
+* {
+  /* box-sizing: border-box; */
+  margin: 0;
+  padding: 0;
+}
+/* Default
+------------------------------------- */
+body {
+  font-family: Arial, sans-serif;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  height: 200px;
+  background-color:yellow;
+}
+.grid div {
+  width: 20px;
+  height: 20px;
+}
+.snake {
+  background-color: blue;
+}
+.apple {
+  background-color: green;
+}

@@ -1,0 +1,258 @@
+/* Variables
+------------------------------------- */
+:root {
+  --main-accent: #fc575e;
+  --light-accent: #f0f1f5;
+  --dark-accent: #333;
+  --main-grey: #555;
+  font-size: 62.5%;
+  --h1-title: 3.2rem;
+  --h2-title: 2.4rem;
+  --h3-title: 1.8rem;
+  --h4-title: 1.6rem;
+  --title-B: 1.8rem;
+  --subtitle-B: 1rem;
+}
+
+/* Reset
+------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Global
+------------------------------------- */
+body {
+  background-color: var(--light-accent);
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--main-grey);
+}
+
+h1 {
+  font-size: var(--h1-title);
+  margin-bottom: ver(--title-B;)
+}
+
+h2 {
+  font-size: var(--h2-title);
+  margin-bottom: var(--subtitle-B);
+}
+
+h3 {
+  font-size: var(--h3-title);
+  margin-bottom: var(--subtitle-B);
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+a {
+  color: var(--main-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  color: var(--main-grey);
+}
+
+/* Navbar
+------------------------------------- */
+#nav {
+  height: 6rem;
+  background: var(--dark-accent);
+  margin-bottom: var(--title-B);
+}
+
+#navContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-header {
+  color: var(--light-accent);
+}
+
+#addBtn {
+  font-size: 2.4rem;
+  color: var(--light-accent);
+  transition: all 0.5s;
+}
+
+#addBtn:hover {
+  transform: rotate(90deg);
+  color: var(--main-accent);
+}
+
+/* Panel
+------------------------------------- */
+.full-screen-opaue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 5;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 3px var(--main-grey);
+  padding: 40px 20px 20px 20px;
+  margin: 10px;
+  max-width: 600px;
+}
+
+/* Link Panel
+------------------------------------- */
+.link {
+  position: relative;
+}
+
+.link:hover {
+  box-shadow: 0 0 3px var(--main-accent);
+}
+
+#linkList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  flex-basis: 100%;
+}
+
+.link-options {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.link-date {
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+#addedCategories {
+  margin: 15px 0;
+}
+
+.categories {
+  margin: 1.5rem 0 0;
+}
+
+.category {
+  font-weight: bold;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid var(--main-accent);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--main-accent);
+  color: var(--light-accent);
+}
+
+/* Form
+------------------------------------- */
+.form-control {
+  width: 100%;
+  margin: 8px 0;
+  height: 34px;
+  border-radius: 5px;
+  border: 1px solid var(--main-grey);
+  padding: 5px 15px;
+  font-size: 1.4rem;
+  color: var(--main-grey);
+}
+
+#addLinkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#addLinkContainer.hidden {
+  display: none;
+}
+
+#addLinkPanel {
+  animation: slide-down 1.5s 0s ease-in;
+}
+
+/* Button
+------------------------------------- */
+input[type='submit'],
+button {
+  padding: 8px 22px;
+  border-radius: 5px;
+  border: 1px solid var(--main-accent);
+  background-color: var(--main-accent);
+  color: var(--light-accent);
+  font-size: 1.6rem;
+  transition: all 0.5s;
+}
+
+input[type='submit']:hover,
+button:hover {
+  cursor: pointer;
+  color: var(--main-accent);
+  background-color: #fff;
+}
+
+.btn-sm {
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+
+/* Animation
+------------------------------------- */
+@keyframes slide-down {
+  0% {
+    transform: translateY(-1000px);
+  }
+  90% {
+    transform: translateY(25px);
+  }
+  95% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translasteY(0px);
+  }
+}
+
+/* Media Queries
+------------------------------------- */
+@media only screen and (min-width: 786px) {
+  .flex-item {
+    flex-basis: 50%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .flex-item {
+    flex-basis: 33%;
+  }
+}

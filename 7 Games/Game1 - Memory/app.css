@@ -1,0 +1,23 @@
+/* Variables
+------------------------------------- */
+:root {
+  --main-accent: #333;
+}
+/* Reset
+------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+/* Default
+------------------------------------- */
+body {
+  background-attachment: fixed;
+  background-image: linear-gradient(to bottom right, yellow, red);
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 400px;
+}
+
