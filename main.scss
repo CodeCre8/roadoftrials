@@ -161,16 +161,21 @@ p {
   background: var(--clr-black);
 }
 .wrapper {
-  width: 90%;
-  max-width: 580px;
-  margin: 1.5em;
+  width: 100%;
+  // max-width: 580px;
+  border: 20px solid var(--clr-grey-1);
+  border-top-width: 40px;
+}
+
+.container {
+  margin: 1em;
 }
 
 /* section */
-.section {
-  padding: 5rem 0;
+section {
+  // background: var(--clr-grey-9);
+  padding: 1em;
 }
-
 
 /*
 =============== 
@@ -178,12 +183,63 @@ Header
 ===============
 */
 header {
+
+  .title {
+    background-color: var(--clr-grey1);
+  }
+
   h1 {
     display: none;
   }
   svg {
-    width: 70vw;
+    width: 80vw;
     height: 80%;
+    background: var(--clr-grey1);
+  }
+  #daily {
+    display: none;
   }
 
 }
+
+/*
+=============== 
+App
+===============
+*/
+main {
+  display: flex;
+
+}
+
+
+
+
+.app-container {
+    width: 30%;
+    height: auto;
+    
+    .content-container {
+      display: none;
+    }
+  
+
+    &:nth-child(odd) {
+    background: var(--clr-grey-8);
+    margin: 1em 0;
+    }
+    
+  }
+
+  .countdown.content-container {
+    display: block;
+    width: 100%;
+  }
+
+
+
+
+
+// section:nth-ochild(odd) {
+//   background: var(--clr-grey-7);
+// }

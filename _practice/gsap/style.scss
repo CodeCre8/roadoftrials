@@ -1,0 +1,105 @@
+:root {
+  --clr-main-primary: rgba(61, 61, 61, 1);
+  --clr-main-blue: rgb(100, 113, 143);
+  --clr-dk: rgba(0, 0, 0, 1);
+  --clr-lt: rgba(255, 255, 255, 1);
+
+  --ff-primary: 'Lobster', cursive;
+  --ff-secondary: 'Heebo', sans-serif;
+  --ff-size: 66.25%;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff-secondary);
+  font-size: 1rem;
+  color: var(--clr-main-primary);
+}
+
+main {
+
+  .landing {
+    min-height: 100vh;
+    background: url('dario-valenzuela-1-9nfcJ7-Zk-unsplash.jpg');
+    background-size: cover;
+    padding: 0 5em;
+
+    nav {
+      min-height: 10vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      #logo {
+        font-family: var(--ff-primary);
+        font-size: 2rem;
+        font-weight: lighter;
+      }
+  
+      #nav-links {
+        display: flex;
+        list-style-type: none;
+  
+        li {
+          font-family: var(--ff-primary);
+          font-size: 1.2rem;
+          padding-left: 5em;
+        }
+      }
+    }
+
+    .big-text {
+      font-family: var(--ff-primary);
+      font-size: 3.5rem;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -30%);
+    }
+  }
+}
+
+.intro {
+  background: var(--clr-main-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .intro-text {
+    opacity: .7;
+    font-size: 2rem;
+    color: var(--clr-lt);
+
+    .hide {
+      background: var(--clr-main-primary);
+      overflow: hidden;
+
+      span.text {
+        transform: translateY(100%);
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.slider {
+  background: var(--clr-main-blue);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+}
