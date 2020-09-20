@@ -1,0 +1,143 @@
+:root {
+  --clr-dk-blue: #111D4A;
+  --clr-lt-blue: #05CBE9;
+  --clr-body: rgba(255,255,255,0.7);
+
+  /*
+  font
+  */
+  font-size: 62.5%;
+  --ff-primary: 'Source Sans Pro', sans-serif;
+  //h1
+  --ff-h1: 2.8rem;
+  --letter-spacing-h1: -.04em;
+  --margin-bottom-h1: .5em;
+  //p
+  --ff-p: 1.8rem;
+  --letter-spacing-p: -.02em;
+  --margin-bottom-p: .5em;
+  --line-height-p: 1.5em;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff-primary);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--clr-body);
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: var(--ff-h1);
+  // letter-spacing: var(--letter-spacing-h1);
+  margin-bottom: var(--margin-bottom-h1);
+  color: var(--clr-lt-blue);
+}
+
+p {
+  font-size: var(--ff-p);
+  // letter-spacing: var(--letter-spacing-p);
+  line-height: var(--line-height-p);
+}
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  background: var(--clr-dk-blue);
+
+  .hero-img {
+    width: 100%;
+    max-width: 100%;
+    height: 35vh;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+
+    .card-info,
+    .card-CTA {
+      margin: 3.5em 5em;
+    }
+
+    .card-CTA {
+      display: flex;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.5);
+
+      p,
+      a {
+        font-size: 2.2rem;
+      }
+
+      p {
+        width: 75px;
+        line-height: 1.2em;
+
+        .time {
+          font-size: 3rem;
+          font-weight: 700;
+        }
+      }
+
+      a {
+        display: flex;
+        align-self: flex-end;
+        padding: .5em 1.75em;
+        background: var(--clr-lt-blue);
+        text-decoration: none;
+        font-weight: 700;
+        color: var(--clr-dk-blue);
+      }
+      
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  h1 {
+    font-size: 3.4rem;
+    letter-spacing: var(--letter-spacing-h1);
+  }
+  .card {
+    width: 100%;
+    max-width: 770px;
+    height: 400px;
+    display: flex;
+    flex-flow: row;
+    margin: 0;
+
+    .card-hero {
+      width: 100%;
+      max-width: 255px;
+    }
+    .hero-img {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-content {
+      .card-info,
+      .card-CTA {
+        margin: 3em;
+      }
+    }
+  }
+}  
+
