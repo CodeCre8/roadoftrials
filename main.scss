@@ -57,8 +57,15 @@ Variables
   --radius: 0.5rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  --max-width: 1170px;
+  --max-width: 1280px;
   --fixed-width: 620px;
+  /* grid */
+  --grid-c-1: minmax(90px, 120px);
+  --grid-c-2: minmax(80px, 110px);
+  --grid-c-3: minmax(70px, 100px);
+  --grid-r-1: minmax(30px, 50px);
+  --grid-r-2: minmax(20px, 40px);
+  --grid-r-3: minmax(10px, 30px);
 }
 
 /*
@@ -79,7 +86,6 @@ body {
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 1.6rem;
-  margin: 0 auto;
 }
 ul {
   list-style-type: none;
@@ -147,77 +153,203 @@ layout
 ===============
 */
 .wrapper {
-  width: 100vw;
-  min-height: 100vh;
-  border: 20px solid var(--clr-grey-1);
-  border-top-width: 40px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-}
-
-/* Header */
-header {
-  // position: relative;
-
-  h1 {
-    display: none;
-  }
-  svg {
-    width: 70%;
-    height: auto;
-    margin-bottom: 2em;
-  }
-  #daily {
-    display: none;
-  }
-
-}
-
-
-
-/* Main */
-main {
-  margin: 1em;
+  margin: 0 auto;
+  width: 90%;
+  height: 100vh;
+  // display: flex;
+  // flex-flow: column;
+  // justify-content: space-between;
   display: grid;
+  grid-template-columns: minmax(30px, 50px) minmax(30px, 150px) minmax(30px, 150px) minmax(30px, 150px) minmax(30px, 150px);
   grid-gap: 1em;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: 50px minmax(30px, 100px) minmax(30px, 100px) minmax(30px, 100px) minmax(30px, 100px) minmax(30px, 100px);
+  grid-template-areas:
+    "header header header . daily"
+    "header header header . ."
+    "about quote quote snake snake"
+    "about weather weather quiz quiz"
+    "about note note link link"
+    "time time time time time";
 }
 
 .container {
   margin: 1em;
 }
 
-section {
-  // background: var(--clr-grey-9);
-  padding: 1em;
+.hide {
+  display: none;
 }
 
-
-/* App */
-
-.app-container {
-  // width: 100px;
-  height: 100px;
-  background: var(--clr-grey-3);
-
-  &:nth-child(odd) {
-  background: var(--clr-grey-4);
+/* Header */
+// header {
+  // position: relative;
+  
+  .logo {
+    position: relative;
+    grid-area: header;
   }
-}
 
-footer {
+  h1 {
+    display: none;
+  }
 
-  #countdown.countdown-container {
-    grid-column: 1 / -1;
-    background: var(--clr-grey-3);
-    justify-self: end;
+  svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 2em;
+  }
+
+  .about {
+    grid-area: about;
+    background: var(--clr-grey-8);
   }
   
+  .daily {
+    grid-area: daily;
+    justify-self: end;
+    background: var(--clr-grey-7);
+    // grid-column: 6 / -1;
+    // grid-row: 1 / 2;
+  }
+
+  .quote {
+    grid-area: quote;
+    background: var(--clr-grey-6);
+  }
+
+  .snake {
+    grid-area: snake;
+    background: var(--clr-grey-7);
+  }
+
+  .weather {
+    grid-area: weather;
+    background: var(--clr-grey-7);
+  }
+
+  .quiz {
+    grid-area: quiz;
+    background: var(--clr-grey-7);
+  }
+
+  .note {
+    grid-area: note;
+    background: var(--clr-grey-6);
+  }
+
+  .link {
+    grid-area: link;
+    background: var(--clr-grey-7);
+  }
+
+  .countdown {
+    grid-area: time;
+    background: var(--clr-grey-7);
+    // justify-self: stretch;
+    // grid-column: 1 / -1;
+    // grid-row: 6 / -1;
+  }
+// }
+
+/* Main */
+// main {
+//   margin: 1em;
+  // display: grid;
+  // grid-gap: 1em;
+  // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+// }
+
+// .container {
+//   margin: 2em;
+// }
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5em;
 }
 
-@media (min-width: 600px) {
-  main {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+
+
+
+  
+
+
+// footer {
+
+  // #countdown.countdown-container {
+  //   grid-column: 1 / -1;
+  //   background: var(--clr-grey-3);
+  //   justify-self: end;
+  // }
+  
+// }
+
+@media (min-width: 960px) {
+
+  // --grid-c-1: minmax(90px, 120px);
+  // --grid-c-2: minmax(80px, 110px);
+  // --grid-c-3: minmax(70px, 100px);
+  // --grid-r-1: minmax(30px, 50px);
+  // --grid-r-2: minmax(20px, 40px);
+  // --grid-r-3: minmax(10px, 30px);
+
+  .wrapper {
+    position: relative;
+    max-width: var(--max-width);
+    grid-template-columns: 
+      var(--grid-c-3) var(--grid-c-3) 
+      var(--grid-c-2) var(--grid-c-2) 
+      var(--grid-c-1) var(--grid-c-1) var(--grid-c-1) 
+      var(--grid-c-2) var(--grid-c-2) 
+      var(--grid-c-3) var(--grid-c-3);
+    grid-gap: 1em;
+    grid-template-rows: 
+      var(--grid-r-3) var(--grid-r-3) var(--grid-r-3) var(--grid-r-3) 
+      var(--grid-r-3) var(--grid-r-2) var(--grid-r-2) var(--grid-r-2) 
+      var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) 
+      var(--grid-r-2) var(--grid-r-2) var(--grid-r-2) var(--grid-r-3) 
+      ar(--grid-r-3) var(--grid-r-3) var(--grid-r-3) var(--grid-r-3);
+    grid-template-areas:
+      
+      ". . . . . . . . . . ."
+      ". . . about . header header header header . ."
+      ". . . about . header header header header . ."
+      ". . . about daily header header header header . ."
+      ". . . . daily header header header header . ."
+      ". . quote quote quote quote . . . . ."
+      ". . quote quote quote quote . . . . ."
+      "quiz quiz quote quote quote quote . . snake snake ."
+      "quiz quiz quote quote quote quote note note snake snake ."
+      ". . quote quote quote quote note note snake snake ."
+      ". . quote quote quote quote note note snake snake ."
+      ". . quote quote quote quote note note link link link"
+      ". . quote quote quote quote note note link link link"
+      ". . . time time time weather weather link link link"
+      ". . . time time time weather weather . . ."
+      ". . . . . . weather weather . . ."
+      ". . . . . . weather weather . . ."
+      ". . . . . . weather weather . . ."
+      ". . . . . . . . . . .";
+      margin: 0 auto;
+  }
+
+  .logo {
+    // align-self: start;
+  }
+  
+  .title {
+    position: absolute;
+    top: 20px;
+    // background: var(--clr-grey-8);
+    
+    svg {
+      width: 100%;
+      height: 40vh;
+      max-width: 600px;
+    }
   }
 }

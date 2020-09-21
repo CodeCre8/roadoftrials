@@ -1,0 +1,83 @@
+.grid {
+  display: grid;
+  grid-template-columns: 5em auto 5em;
+  grid-template-areas: 
+    "header header daily"
+    ". about ."
+    ". snake ."
+    "footer footer footer"
+}
+
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: 100px 100px 200px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px;
+    grid-template-areas: 
+      "header header header . daily"
+      "header header header . ."
+      "about quote quote snake snake"
+      "about weather weather quiz quiz"
+      "about note note link link"
+      "time time time time time"
+      "footer footer footer footer footer";
+  }
+}
+
+.header {
+  grid-area: header;
+}
+
+.about {
+  grid-area: about;
+}
+
+.daily {
+  grid-area: daily;
+}
+
+.quote {
+  grid-area: quote;
+}
+
+.snake {
+  grid-area: snake;
+}
+
+.weather {
+  grid-area: weather;
+}
+
+.quiz {
+  grid-area: quiz;
+}
+
+.note {
+  grid-area: note;
+}
+
+.link {
+  grid-area: link;
+}
+
+.time {
+  grid-area: time;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.grid-item {
+  background: #B823C1;
+  color: white;
+  padding: 1em 2em;
+  border: 2px solid purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.big {
+    padding: 3em 2em;
+    background: #FF5670;
+}
