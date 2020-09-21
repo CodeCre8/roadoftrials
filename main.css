@@ -202,7 +202,7 @@ svg {
   width: 100%;
   max-width: 300px;
   height: auto;
-  margin-bottom: 2em;
+  mix-blend-mode: multiply;
 }
 
 .about {
@@ -227,7 +227,20 @@ svg {
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: quote;
-  background: var(--clr-grey-6);
+}
+
+.quote .quote-container {
+  display: none;
+}
+
+.quote .quote-container .words {
+  font-size: clamp(2.4rem, 3vw, 4.8rem);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.quote .quote-container .author {
+  font-style: italic;
+  font-size: clamp(1.8rem, 2.4vw, 3rem);
 }
 
 .snake {
@@ -314,7 +327,7 @@ section {
     height: 40vh;
     max-width: 600px;
   }
-  .daily .temp {
+  .daily .daily-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -322,29 +335,33 @@ section {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .daily .temp .temp-display {
+  .daily .daily-container .temp-display {
     font-size: clamp(2.4rem, 3.6vw, 4.8rem);
     font-weight: bold;
     margin: 0 0 0 1em;
     padding: 0;
   }
-  .daily .temp .temp-display span {
+  .daily .daily-container .temp-display span {
     font-size: clamp(1.6rem, 2.4vw, 3.6rem);
   }
-  .daily .temp .temp-display span.hilo {
+  .daily .daily-container .temp-display span.hilo {
     display: block;
     font-size: 1.1rem;
   }
-  .daily .temp .condition {
+  .daily .daily-container .condition {
     text-align: center;
   }
-  .daily .temp span.condition-icon {
+  .daily .daily-container span.condition-icon {
     width: 5vw;
     display: block;
   }
-  .daily .temp span.condition-icon img {
+  .daily .daily-container span.condition-icon img {
     width: 100%;
     height: auto;
+  }
+  .quote .quote-container {
+    display: block;
+    margin: 0 8rem 0 0;
   }
 }
 /*# sourceMappingURL=main.css.map */

@@ -79,44 +79,109 @@ const quotes = [
   { word: "Fear is a reaction. Courage is a decision.",
     name: "Winston Churchill"}
 ]
-let quotesLength = quotes.length
-console.log(quotesLength)
 
-/* Daily Weather */
+/* 
+Daily Weather 
+*/
 // openweather
 const city = 'Toronto'
-const api = {
+const apiWeather = {
   key: '78a5a8d39a27f87db26f3e09770cf822',
   baseurl: 'https://api.openweathermap.org/data/2.5/'
 }
 const weatherIcon = 'https://openweathermap.org/img/wn/'
-const dailyDisplay = document.querySelector('#daily')
+// const dailyDisplay = document.querySelector('#daily')
 const tempDisplay = document.querySelector('.temp-display')
 // const conditionIcon = document.querySelector('.condition-icon')
 const condition = document.querySelector('.condition')
 // const currentDate = document.querySelector('.date')
 
+/* 
+Display random quote 
+*/
+const apiUnsplash = {
+  // key: '98c89afbaccd1368f2ec415725d45f7e33dbf81f3e4e0b7bf685e66280d84a1f',
+  baseurl: 'https://source.unsplash.com/collection/',
+  collectionID: '1627358',
+  creator: 'Joseph Kang',
+  link: 'https://unsplash.com/@pinop/collections',
+  unsplash: 'https://unsplash.com/'
+}
+const numItemsToGenerate = 1; 
+const numImagesAvailable = 27;
+const imageWidth = 600; 
+const imageHeight = 600; 
+const collectionID = 1627358;
+let randomPhotoIndex = Math.floor(Math.random() * numImagesAvailable)
+const quoteBkgd = document.querySelector('.quote')
+const quoteDisplay = document.querySelector('.words')
+const authorDisplay = document.querySelector('.author')
+const contributor = document.querySelector('.contributor')
+
 
 window.addEventListener('load', () => {
   // get weather
-  fetch(`${api.baseurl}weather?q=${city}&units=metric&appid=${api.key}`)
+  getWeather()
+  // display quote
+  displayQuote()
+})
+
+/* retrieve weather data from openweather */
+function getWeather() {
+  // get weather
+  fetch(`${apiWeather.baseurl}weather?q=${city}&units=metric&appid=${apiWeather.key}`)
     .then(weather => {
       return weather.json()
-    }).then(displayResult)
+    }).then(displayWeather)
+}
 
-  function displayResult(weather) {
-    console.log(weather)
-    tempDisplay.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span><span class="hilo">Hi: ${weather.main.temp_max} / Lo: ${weather.main.temp_min}`
-    condition.innerHTML = `<span class="condition-icon"><img src="${weatherIcon}${weather.weather[0].icon}@2x.png" alt="${weather.weather[0].description}"></span>${weather.weather[0].description}`
-  }
+/* display daily weather */
+function displayWeather(weather) {
+  tempDisplay.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span><span class="hilo">Hi: ${weather.main.temp_max} / Lo: ${weather.main.temp_min}`
+  condition.innerHTML = `<span class="condition-icon"><img src="${weatherIcon}${weather.weather[0].icon}@2x.png" alt="${weather.weather[0].description}"></span>${weather.weather[0].description}`
+}
 
-  // get date
-  // const today = new Date()
-  // const year = today.getFullYear()
-  // const month = mns[today.getMonth()]
-  // const date = today.getDate()
-  // const day = wkds[today.getDay()]
+/* get today's date */
+function getTodayDate() {
+  //get date
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = mns[today.getMonth()]
+  const date = today.getDate()
+  const day = wkds[today.getDay()]
 
-  // currentDate.textContent = `${day}, ${month} ${date} ${year}`
-})
-// 78a5a8d39a27f87db26f3e09770cf822
+  currentDate.textContent = `${day}, ${month} ${date} ${year}`
+}
+
+/* display random quote */
+function displayQuote() {
+  let quotesList = quotes.length
+  let randomNum = Math.floor(Math.random() * quotesList)
+  // let randomPhoto =  `${apiUnsplash.baseurl}${apiUnsplash.collectionID}/600x600/")`
+  // quoteBkgd.style.backgroundImage = `url("${apiUnsplash.baseurl}${apiUnsplash.key}")`
+  quoteDisplay.textContent = quotes[randomNum].word
+
+}
+
+/* fetch random unsplash */
+// function fetchUnsplash() {
+//   fetch(`${apiUnsplash.baseurl}${apiUnsplash.collectionID}/600x600/`)
+//     .then((response) => {
+//       return response.json()
+//     })
+//     .then(console.log(`${response.url}`))
+// }
+
+function fetchUnsplash(randomPhotoIndex){
+  fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
+    .then((response)=> {    
+      quoteBkgd.style.backgroundImage = `url("${response.url}")`
+    })
+}
+
+fetchUnsplash()
+// https://source.unsplash.com/dark/800x600
+// https://unsplash.it/700/100
+
+// fetch(`https://source.unsplash.com/collection/${collectionID}/600x600/`)
+
