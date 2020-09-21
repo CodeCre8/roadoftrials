@@ -99,19 +99,14 @@ const condition = document.querySelector('.condition')
 /* 
 Display random quote 
 */
-const apiUnsplash = {
-  // key: '98c89afbaccd1368f2ec415725d45f7e33dbf81f3e4e0b7bf685e66280d84a1f',
-  baseurl: 'https://source.unsplash.com/collection/',
-  collectionID: '1627358',
-  creator: 'Joseph Kang',
-  link: 'https://unsplash.com/@pinop/collections',
-  unsplash: 'https://unsplash.com/'
-}
+const bkgdGradient = 'linear-gradient(to bottom, rgba(145, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),'
 const numItemsToGenerate = 1; 
 const numImagesAvailable = 27;
-const imageWidth = 600; 
-const imageHeight = 600; 
+const imageWidth = 480; 
+const imageHeight = 480; 
 const collectionID = 1627358;
+const photoCreator = 'Joseph Kang'
+const photoLink = 'https://unsplash.com/@pinop/collections';
 let randomPhotoIndex = Math.floor(Math.random() * numImagesAvailable)
 const quoteBkgd = document.querySelector('.quote')
 const quoteDisplay = document.querySelector('.words')
@@ -157,25 +152,17 @@ function getTodayDate() {
 function displayQuote() {
   let quotesList = quotes.length
   let randomNum = Math.floor(Math.random() * quotesList)
-  // let randomPhoto =  `${apiUnsplash.baseurl}${apiUnsplash.collectionID}/600x600/")`
-  // quoteBkgd.style.backgroundImage = `url("${apiUnsplash.baseurl}${apiUnsplash.key}")`
   quoteDisplay.textContent = quotes[randomNum].word
-
+  authorDisplay.textContent = quotes[randomNum].name
 }
 
 /* fetch random unsplash */
-// function fetchUnsplash() {
-//   fetch(`${apiUnsplash.baseurl}${apiUnsplash.collectionID}/600x600/`)
-//     .then((response) => {
-//       return response.json()
-//     })
-//     .then(console.log(`${response.url}`))
-// }
-
 function fetchUnsplash(randomPhotoIndex){
   fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
     .then((response)=> {    
-      quoteBkgd.style.backgroundImage = `url("${response.url}")`
+      quoteBkgd.style.backgroundImage = `${bkgdGradient}url("${response.url}")`
+      console.log(`${bkgdGradient},url("${response.url}")`)
+      contributor.innerHTML = `<a href="${photoLink}">${photoCreator}</a>`
     })
 }
 

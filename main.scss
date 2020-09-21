@@ -37,13 +37,15 @@ Variables
   --clr-grey-8: hsl(210, 31%, 80%);
   --clr-grey-9: hsl(212, 33%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
-  --clr-white: #fff;
   --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
   --clr-secondary: hsla(182, 63%, 54%);
   --clr-black: #222;
+  --clr-white: #fff;
+  --clr-dk-faded: rgba(0, 0, 0, 0.7);
+  --clr-lt-faded: rgba(255, 255, 255, .7);
   /* font */
   font-size: 62.5%;
   --ff-primary: "Roboto Slab", serif;
@@ -63,9 +65,9 @@ Variables
   --grid-c-1: minmax(90px, 120px);
   --grid-c-2: minmax(80px, 110px);
   --grid-c-3: minmax(70px, 100px);
-  --grid-r-1: minmax(30px, 50px);
-  --grid-r-2: minmax(20px, 40px);
-  --grid-r-3: minmax(10px, 30px);
+  --grid-r-1: minmax(35px, 50px);
+  // --grid-r-2: minmax(60px, 80px);
+  // --grid-r-3: minmax(40px, 60px);
 }
 
 /*
@@ -110,23 +112,25 @@ h4 {
   font-family: var(--ff-primary);
 }
 h1 {
-  font-size: clamp(2rem, 3vw, 4rem);
+  font-size: clamp(3.2rem, 4vw, 5rem);
 }
 h2 {
-  font-size: 2rem;
+  font-size: clamp(2.8rem, 3.4vw, 4rem);
 }
 h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.8rem, 2.1vw, 2.8rem);
 }
 h4 {
-  font-size: 1.3rem;
+  font-size: clamp(1.4rem, 1.6vw, 1.8rem);
 }
 p {
   font-size: clamp(1rem, 1.6vw, 2rem);
   margin-bottom: .5em;
   color: var(--clr-grey-5);
 }
-
+a {
+  color: var(--clr-lt-faded);
+}
 /*  global classes */
 .btn {
   text-transform: uppercase;
@@ -197,6 +201,7 @@ layout
     width: 100%;
     max-width: 300px;
     height: auto;
+    opacity: .7;
     // margin-bottom: 2em;
     mix-blend-mode: multiply;
   }
@@ -209,6 +214,12 @@ layout
   .daily {
     grid-area: daily;
     align-self: end;
+    font-family: var(--ff-primary);
+
+    .hilo,
+    .condition {
+      font-family: var(--ff-secondary);
+    }
   }
 
   .quote {
@@ -216,13 +227,24 @@ layout
     // background: var(--clr-grey-8);
     .quote-container {
       display: none;
+      .wrods,
+      .author {
+        text-shadow: .5em .5em 0 0 rgba(0, 0, 0, 0.5);
+      }
+
       .words {
         font-size: clamp(2.4rem, 3vw, 4.8rem);
         color: rgba(255, 255, 255, .7);
+        margin-bottom: .5em;
       }
       .author {
         font-style: italic;
-        font-size: clamp(1.8rem, 2.4vw, 3rem);
+        color: var(--clr-lt-faded);
+
+        &::before {
+          content: "– ";
+
+        }
       }
     }
   }
@@ -281,7 +303,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: .5em;
+  padding: 1em;
 }
 
 
@@ -321,30 +343,26 @@ section {
       var(--grid-c-3) var(--grid-c-3);
     grid-gap: 1em;
     grid-template-rows: 
-      var(--grid-r-3) var(--grid-r-3) var(--grid-r-3) var(--grid-r-3) 
-      var(--grid-r-3) var(--grid-r-2) var(--grid-r-2) var(--grid-r-2) 
       var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) 
-      var(--grid-r-2) var(--grid-r-2) var(--grid-r-2) var(--grid-r-3) 
-      ar(--grid-r-3) var(--grid-r-3) var(--grid-r-3) var(--grid-r-3);
+      var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) 
+      var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) 
+      var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) 
+      var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
     grid-template-areas:
-      
       ". . . . . . . . . . ."
-      ". . . about . header header header header . ."
+      ". . . about .  . . . . . ."
       ". . . about . header header header header . ."
       ". . . daily daily header header header header . ."
       ". . . daily daily header header header header . ."
       ". . quote quote quote quote . . . . ."
-      ". . quote quote quote quote . . . . ."
+      "quiz quiz quote quote quote quote . . . . ."
       "quiz quiz quote quote quote quote . . snake snake ."
-      "quiz quiz quote quote quote quote note note snake snake ."
       ". . quote quote quote quote note note snake snake ."
       ". . quote quote quote quote note note snake snake ."
       ". . quote quote quote quote note note link link link"
-      ". . quote quote quote quote note note link link link"
+      ". . quote quote quote quote weather weather link link link"
       ". . . time time time weather weather link link link"
       ". . . time time time weather weather . . ."
-      ". . . . . . weather weather . . ."
-      ". . . . . . weather weather . . ."
       ". . . . . . weather weather . . ."
       ". . . . . . . . . . .";
       margin: 0 auto;
@@ -352,8 +370,8 @@ section {
   
   .title {
     position: absolute;
-    top: 30px;
-    left: 0px;
+    top: 0px;
+    left: 10px;
     // background: var(--clr-grey-8);
     
     svg {
@@ -367,6 +385,7 @@ section {
     .daily-container {
       display: flex;
       justify-content: space-between;
+      line-height: 1.45;
       // align-items: baseline;
 
       .temp-display {
@@ -402,10 +421,27 @@ section {
   }
 
   .quote {
+    align-items: flex-end;
     // background: rgba(255, 255, 255, 0);
+    
     .quote-container {
+      // padding: 1em 1em 1em 1em;
+      height: 100%;
       display: block;
-      margin: 0 8rem 0 0;
+      // grid-template-columns: 1fr 1fr 1fr 1fr;
+      // grid-template-rows: 
+      .author {
+        font-family: var(--ff-secondary);
+      }
+    }
+
+    .credit {
+      margin-bottom: 0;
+      font-size: .875rem;
+      color: var(--clr-white);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      color: var(--clr-lt-faded);
     }
   }
 }
