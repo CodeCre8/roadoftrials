@@ -50,10 +50,10 @@ Variables
   --ff-primary: "Roboto Slab", serif;
   --ff-secondary: "Roboto Condensed", sans-serif;
   /* animation */
-  --transition: all 0.3s linear;
+  --transition: all .5s ease-in-out;
   /* layout */
   --spacing: 0.25rem;
-  --radius: 0.5rem;
+  --radius: 1rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1280px;
@@ -216,7 +216,6 @@ svg {
   -ms-grid-row-span: 3;
   -ms-grid-column: 1;
   grid-area: about;
-  background: var(--clr-grey-8);
 }
 
 .daily {
@@ -239,6 +238,8 @@ svg {
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: quote;
+  background-size: cover;
+  background-position: cover;
 }
 
 .quote .quote-container {
@@ -326,6 +327,7 @@ section {
       -ms-flex-align: center;
           align-items: center;
   padding: 1em;
+  border-radius: var(--radius);
 }
 
 @media (min-width: 960px) {
@@ -337,18 +339,50 @@ section {
     grid-gap: 1em;
     -ms-grid-rows: var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
         grid-template-rows: var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
-        grid-template-areas: ". . . . . . . . . . ." ". . . about .  . . . . . ." ". . . about . header header header header . ." ". . . daily daily header header header header . ." ". . . daily daily header header header header . ." ". . quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note link link link" ". . quote quote quote quote weather weather link link link" ". . . time time time weather weather link link link" ". . . time time time weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . . . . . .";
+        grid-template-areas: ". . . about about about about about . . ." ". . . about about about about about . . ." ". . . . . header header header header . ." ". . . daily daily header header header header . ." ". . . daily daily header header header header . ." ". . quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note link link link" ". . quote quote quote quote weather weather link link link" ". . . time time time weather weather link link link" ". . . time time time weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . . . . . .";
     margin: 0 auto;
   }
   .title {
     position: absolute;
-    top: 0px;
+    top: -10px;
     left: 10px;
   }
   .title svg {
     width: 100%;
     height: 40vh;
     max-width: 600px;
+  }
+  .about {
+    border-top: 20px solid var(--clr-grey-4);
+  }
+  .about .about-container {
+    border-bottom-right-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+    background: var(--clr-grey-8);
+    opacity: .8;
+    width: 100%;
+    padding: 1em;
+    -webkit-clip-path: inset(0% 0% 100% 0%);
+            clip-path: inset(0% 0% 100% 0%);
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .about .about-container p {
+    font-size: clamp(1rem, 1.3vw, 1.6rem);
+    color: var(--white);
+    line-height: 1.35;
+    margin-bottom: 0.25em;
+  }
+  .about .about-container p:nth-of-type(1) {
+    margin-top: 0.5em;
+  }
+  .about .about-container p:nth-of-type(3) {
+    font-family: var(--ff-primary);
+  }
+  .about:hover .about-container {
+    -webkit-clip-path: inset(0% 0% 0% 0%);
+            clip-path: inset(0% 0% 0% 0%);
   }
   .daily .daily-container {
     display: -webkit-box;
@@ -357,7 +391,7 @@ section {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    line-height: 1.45;
+    line-height: 1.55;
   }
   .daily .daily-container .temp-display {
     font-size: clamp(2.4rem, 3.6vw, 4.8rem);
@@ -389,6 +423,7 @@ section {
             align-items: flex-end;
   }
   .quote .quote-container {
+    padding: 0 3em 0 0;
     height: 100%;
     display: block;
   }

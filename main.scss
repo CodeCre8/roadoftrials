@@ -51,12 +51,12 @@ Variables
   --ff-primary: "Roboto Slab", serif;
   --ff-secondary: "Roboto Condensed", sans-serif;
   /* animation */
-  --transition: all 0.3s linear;
+  --transition: all .5s ease-in-out;
   /* layout */
   // --margin-lg: 1em;
   // --margin-sm: .75em;
   --spacing: 0.25rem;
-  --radius: 0.5rem;
+  --radius: 1rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1280px;
@@ -208,7 +208,6 @@ layout
 
   .about {
     grid-area: about;
-    background: var(--clr-grey-8);
   }
   
   .daily {
@@ -224,6 +223,9 @@ layout
 
   .quote {
     grid-area: quote;
+    background-size: cover;
+    background-position: cover;
+
     // background: var(--clr-grey-8);
     .quote-container {
       display: none;
@@ -305,6 +307,7 @@ section {
   justify-content: center;
   align-items: center;
   padding: 1em;
+  border-radius: var(--radius);
 }
 
 
@@ -350,9 +353,9 @@ section {
       var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) 
       var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
     grid-template-areas:
-      ". . . . . . . . . . ."
-      ". . . about .  . . . . . ."
-      ". . . about . header header header header . ."
+      ". . . about about about about about . . ."
+      ". . . about about about about about . . ."
+      ". . . . . header header header header . ."
       ". . . daily daily header header header header . ."
       ". . . daily daily header header header header . ."
       ". . quote quote quote quote . . . . ."
@@ -371,7 +374,7 @@ section {
   
   .title {
     position: absolute;
-    top: 0px;
+    top: -10px;
     left: 10px;
     // background: var(--clr-grey-8);
     
@@ -382,11 +385,46 @@ section {
     }
   }
 
+  .about {
+    border-top: 20px solid var(--clr-grey-4);
+
+    .about-container {
+      border-bottom-right-radius: var(--radius);
+      border-bottom-left-radius: var(--radius);
+      background: var(--clr-grey-8);
+      opacity: .8;
+      width: 100%;
+      padding: 1em;
+      clip-path: inset(0% 0% 100% 0%);
+      transition: var(--transition);
+      cursor: pointer;
+
+      p {
+        font-size: clamp(1rem, 1.3vw, 1.6rem);
+        color: var(--white);
+        line-height: 1.35;
+        margin-bottom: 0.25em;
+
+        &:nth-of-type(1) {
+          margin-top: 0.5em;
+        }
+
+        &:nth-of-type(3) {
+          font-family: var(--ff-primary);
+        }
+      }
+    }
+
+    &:hover .about-container {
+      clip-path: inset(0% 0% 0% 0%);
+    }
+  }
+
   .daily {
     .daily-container {
       display: flex;
       justify-content: space-between;
-      line-height: 1.45;
+      line-height: 1.55;
       // align-items: baseline;
 
       .temp-display {
@@ -426,7 +464,7 @@ section {
     // background: rgba(255, 255, 255, 0);
     
     .quote-container {
-      // padding: 1em 1em 1em 1em;
+      padding: 0 3em 0 0;
       height: 100%;
       display: block;
       // grid-template-columns: 1fr 1fr 1fr 1fr;

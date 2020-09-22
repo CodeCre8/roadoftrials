@@ -152,6 +152,17 @@ function getTodayDate() {
 function displayQuote() {
   let quotesList = quotes.length
   let randomNum = Math.floor(Math.random() * quotesList)
+  let selectedQuote = quotes[randomNum].word
+  let wordNum
+  function WordCount(selectedQuote) { 
+    wordNum = selectedQuote.split(" ").length
+    return wordNum
+  }
+  WordCount(selectedQuote)
+  console.log(wordNum)
+  if(wordNum <= 9) {
+    quoteDisplay.style.fontSize = 'clamp(2.8rem, 3.4vw, 4rem)'
+  }
   quoteDisplay.textContent = quotes[randomNum].word
   authorDisplay.textContent = quotes[randomNum].name
 }
@@ -161,7 +172,6 @@ function fetchUnsplash(randomPhotoIndex){
   fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
     .then((response)=> {    
       quoteBkgd.style.backgroundImage = `${bkgdGradient}url("${response.url}")`
-      console.log(`${bkgdGradient},url("${response.url}")`)
       contributor.innerHTML = `<a href="${photoLink}">${photoCreator}</a>`
     })
 }
