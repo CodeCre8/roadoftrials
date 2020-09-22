@@ -80,6 +80,13 @@ const quotes = [
     name: "Winston Churchill"}
 ]
 
+/*
+** * * * Modal
+*/
+const modal = document.querySelector('.modal')
+const openModal = document.querySelectorAll('.app-container')
+const closeModal = document.querySelector('.close-modal')
+
 /* 
 * * * * *Daily Weather 
 */
@@ -135,6 +142,8 @@ window.addEventListener('load', () => {
   daysRemaining()
   let countdown = setInterval(daysRemaining, 1000)
 
+  /* modal functions */
+  // openApp()
 })
 
 /* retrieve weather data from openweather */
@@ -237,4 +246,25 @@ function displayQuote() {
 
 // fetchUnsplash()
 
+/* listen for modal events */
+openModal.forEach(app => {
+  app.addEventListener('click', () => {
+    modal.classList.remove('hide')
+  })
+})
 
+closeModal.addEventListener('click', () => {
+  modal.classList.add('hide')
+})
+// function openApp() {
+
+//   openModal.forEach(app => {
+//     app.addEventListener('click', () => {
+//       modal.classList.add('hide')
+//     })
+//   })
+  
+//   closeModal.addEventListener('click', () => {
+//     modal.classList.remove('hide')
+//   })
+// }

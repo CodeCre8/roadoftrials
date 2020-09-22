@@ -188,9 +188,41 @@ layout
   cursor: pointer;
 }
 
-// .container {
-//   margin: 1em;
-// }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--clr-grey-1);
+  opacity: .9;
+  padding: 2em;
+
+  .modal-container {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+
+    .modal-content {
+      width: 75vw;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: var(--clr-white);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 3rem;
+      color: var(--clr-lt-faded);
+      cursor: pointer;
+    }
+  }
+}
 
 .hide {
   display: none;
@@ -203,17 +235,15 @@ layout
   h1 {
     display: none;
   }
-}
 
-
-
-svg {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  opacity: .7;
-  // margin-bottom: 2em;
-  mix-blend-mode: multiply;
+  svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    opacity: .7;
+    // margin-bottom: 2em;
+    mix-blend-mode: multiply;
+  }
 }
 
 .about {
@@ -224,7 +254,7 @@ svg {
   grid-area: daily;
   align-self: end;
   font-family: var(--ff-primary);
-  color: var(--clr-grey-3);
+  color: var(--clr-grey-4);
 
   .hilo,
   .condition {
@@ -259,7 +289,6 @@ svg {
 
       &::before {
         content: "– ";
-
       }
     }
   }
@@ -304,13 +333,25 @@ svg {
 
     .timer-format {
       text-align: center;
+      width: 20vw;
 
       h1 {
         color: var(--clr-grey-8);
         // text-shadow: 1px 0px 0px rgba(0, 0, 0, .3), 0px 1px 0px rgba(0, 0, 0, .3), ;
         -webkit-text-stroke: 1px var(--clr-grey-4);
         -webkit-text-fill-color: var(--clr-white);
-}
+        // letter-spacing: 1.08em;
+      }
+
+      // .timer-display {
+      //   width: 1px;
+        
+      //   span {
+      //     width: 1px;
+      //     display: block;
+      //     text-align: right;
+      //   }
+      // }
     }
   }
 }

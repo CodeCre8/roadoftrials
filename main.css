@@ -200,6 +200,48 @@ layout
   cursor: pointer;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--clr-grey-1);
+  opacity: .9;
+  padding: 2em;
+}
+
+.modal .modal-container {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.modal .modal-container .modal-content {
+  width: 75vw;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--clr-white);
+}
+
+.modal .modal-container .close-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  color: var(--clr-lt-faded);
+  cursor: pointer;
+}
+
 .hide {
   display: none;
 }
@@ -217,7 +259,7 @@ layout
   display: none;
 }
 
-svg {
+.logo svg {
   width: 100%;
   max-width: 300px;
   height: auto;
@@ -240,7 +282,7 @@ svg {
       -ms-grid-row-align: end;
       align-self: end;
   font-family: var(--ff-primary);
-  color: var(--clr-grey-3);
+  color: var(--clr-grey-4);
 }
 
 .daily .hilo,
@@ -347,6 +389,7 @@ svg {
 
 .countdown .timer .timer-format {
   text-align: center;
+  width: 20vw;
 }
 
 .countdown .timer .timer-format h1 {
