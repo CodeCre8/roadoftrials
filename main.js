@@ -133,7 +133,7 @@ window.addEventListener('load', () => {
   getWeather()
 
   /* display quote */
-  displayQuote()
+  // displayQuote()
 
   /* display remaining days */
   // displayToday()

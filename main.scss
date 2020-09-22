@@ -56,16 +56,19 @@ Variables
   // --margin-lg: 1em;
   // --margin-sm: .75em;
   --spacing: 0.25rem;
-  --radius: 1rem;
+  --radius: .5em;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1280px;
   --fixed-width: 620px;
   /* grid */
-  --grid-c-1: minmax(90px, 120px);
-  --grid-c-2: minmax(80px, 110px);
-  --grid-c-3: minmax(70px, 100px);
-  --grid-r-1: minmax(35px, 50px);
+  --grid-c-1: minmax(50px, 120px);
+  --grid-c-2: minmax(50px, 110px);
+  --grid-c-3: minmax(50px, 100px);
+  --grid-c-4: minmax(30px, 50px);
+  // --grid-r-1: minmax(35px, 50px);
+  --grid-r-1: minmax(15px, 200px);
+  --grid-r-2: minmax(15px, 200px);
   // --grid-r-2: minmax(60px, 80px);
   // --grid-r-3: minmax(40px, 60px);
 }
@@ -88,6 +91,7 @@ body {
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 1.2rem;
+  margin: 0 auto;
 }
 ul {
   list-style-type: none;
@@ -161,28 +165,35 @@ layout
 */
 .wrapper {
   margin: 0 auto;
-  width: 90%;
+  width: 100vw;
   height: 100vh;
+  padding: 0 2em 3em 2em;
   // display: flex;
   // flex-flow: column;
   // justify-content: space-between;
   display: grid;
-  grid-template-columns: minmax(30px, 50px) minmax(30px, 150px) minmax(30px, 150px) minmax(30px, 150px) minmax(30px, 150px);
+  grid-template-columns: 
+    repeat(4, var(--grid-c-2));
   grid-gap: 1em;
-  grid-template-rows: 50px minmax(30px, 100px) minmax(30px, 100px) minmax(30px, 100px) minmax(30px, 100px) minmax(30px, 100px);
+  grid-template-rows: 50px repeat(7, var(--grid-r-2));
   grid-template-areas:
-    "header header header . daily"
-    "header header header . ."
-    "about quote quote snake snake"
-    "about weather weather quiz quiz"
-    "about note note link link"
-    "time time time time time";
+    "about about about about"
+    "header header header daily"
+    "header header header ."
+    "quote quote quote quote"
+    "quote quote quote quote"
+    "snake snake snake snake"
+    "weather weather quiz quiz"
+    "note note link link"
+    "time time time time";
+  justify-content: center;
 }
 
 .app-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 1em;
   border-radius: var(--radius);
   cursor: pointer;
@@ -248,6 +259,38 @@ layout
 
 .about {
   grid-area: about;
+  border-top: 15px solid var(--clr-grey-7);
+
+  .about-container {
+    border-bottom-right-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+    background: rgba(188, 204, 220, .8);
+    // opacity: .8;
+    width: 100%;
+    padding: 1em;
+    clip-path: inset(0% 0% 100% 0%);
+    transition: var(--transition);
+    cursor: pointer;
+
+    p {
+      font-size: clamp(1rem, 1.3vw, 1.6rem);
+      color: var(--white);
+      line-height: 1.35;
+      margin-bottom: 0.25em;
+
+      &:nth-of-type(1) {
+        margin-top: 0.5em;
+      }
+
+      &:nth-of-type(3) {
+        font-family: var(--ff-primary);
+      }
+    }
+  }
+
+  &:hover .about-container {
+    clip-path: inset(0% 0% 0% 0%);
+  }
 }
 
 .daily {
@@ -384,26 +427,30 @@ layout
     grid-template-areas:
       ". . . about about about about about . . ."
       ". . . about about about about about . . ."
+      ". . . . .header header header header . ."
       ". . . . . header header header header . ."
       ". . . daily daily header header header header . ."
-      ". . . daily daily header header header header . ."
+      ". . . daily daily . . . . . ."
       ". . quote quote quote quote . . . . ."
       "quiz quiz quote quote quote quote . . . . ."
       "quiz quiz quote quote quote quote . . snake snake ."
-      ". . quote quote quote quote note note snake snake ."
+      ". . quote quote quote quote . . snake snake ."
       ". . quote quote quote quote note note snake snake ."
       ". . quote quote quote quote note note link link link"
-      ". . quote quote quote quote weather weather link link link"
+      ". . quote quote quote quote note note link link link"
       ". . . time time time weather weather link link link"
       ". . . time time time weather weather . . ."
       ". . . . . . weather weather . . ."
+      ". . . . . . weather weather . . ."
+      ". . . . . . . . . . ."
       ". . . . . . . . . . .";
       margin: 0 auto;
+      padding: 0 3em 3em 3em;
   }
   
   .title {
     position: absolute;
-    top: -7px;
+    top: 0px;
     left: 10px;
     // background: var(--clr-grey-8);
     
@@ -411,41 +458,6 @@ layout
       width: 100%;
       height: 40vh;
       max-width: 600px;
-    }
-  }
-
-  .about {
-    border-top: 20px solid var(--clr-grey-7);
-
-    .about-container {
-      border-bottom-right-radius: var(--radius);
-      border-bottom-left-radius: var(--radius);
-      background: rgba(188, 204, 220, .8);
-      // opacity: .8;
-      width: 100%;
-      padding: 1em;
-      clip-path: inset(0% 0% 100% 0%);
-      transition: var(--transition);
-      cursor: pointer;
-
-      p {
-        font-size: clamp(1rem, 1.3vw, 1.6rem);
-        color: var(--white);
-        line-height: 1.35;
-        margin-bottom: 0.25em;
-
-        &:nth-of-type(1) {
-          margin-top: 0.5em;
-        }
-
-        &:nth-of-type(3) {
-          font-family: var(--ff-primary);
-        }
-      }
-    }
-
-    &:hover .about-container {
-      clip-path: inset(0% 0% 0% 0%);
     }
   }
 
