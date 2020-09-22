@@ -133,7 +133,7 @@ window.addEventListener('load', () => {
   getWeather()
 
   /* display quote */
-  // displayQuote()
+  displayQuote()
 
   /* display remaining days */
   // displayToday()
@@ -143,7 +143,7 @@ window.addEventListener('load', () => {
   let countdown = setInterval(daysRemaining, 1000)
 
   /* modal functions */
-  // openApp()
+  openApp()
 })
 
 /* retrieve weather data from openweather */
@@ -233,38 +233,29 @@ function displayQuote() {
   }
   quoteDisplay.textContent = quotes[randomNum].word
   authorDisplay.textContent = quotes[randomNum].name
+
+  fetchUnsplash()
 }
 
 /* fetch random unsplash */
-// function fetchUnsplash(randomPhotoIndex){
-//   fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
-//     .then((response)=> {    
-//       quoteBkgd.style.backgroundImage = `${bkgdGradient}url("${response.url}")`
-//       contributor.innerHTML = `<a href="${photoLink}">${photoCreator}</a>`
-//     })
-// }
+function fetchUnsplash(randomPhotoIndex){
+  fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
+    .then((response)=> {    
+      quoteBkgd.style.backgroundImage = `${bkgdGradient}url("${response.url}")`
+      contributor.innerHTML = `<a href="${photoLink}">${photoCreator}</a>`
+    })
+}
 
-// fetchUnsplash()
 
 /* listen for modal events */
-openModal.forEach(app => {
-  app.addEventListener('click', () => {
-    modal.classList.remove('hide')
+function openApp() {
+  openModal.forEach(app => {
+    app.addEventListener('click', () => {
+      modal.classList.remove('hide')
+    })
   })
-})
-
-closeModal.addEventListener('click', () => {
-  modal.classList.add('hide')
-})
-// function openApp() {
-
-//   openModal.forEach(app => {
-//     app.addEventListener('click', () => {
-//       modal.classList.add('hide')
-//     })
-//   })
   
-//   closeModal.addEventListener('click', () => {
-//     modal.classList.remove('hide')
-//   })
-// }
+  closeModal.addEventListener('click', () => {
+    modal.classList.add('hide')
+  })
+}
