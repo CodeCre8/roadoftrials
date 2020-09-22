@@ -62,8 +62,8 @@ Variables
   --max-width: 1280px;
   --fixed-width: 620px;
   /* grid */
-  --grid-c-1: minmax(50px, 120px);
-  --grid-c-2: minmax(50px, 110px);
+  --grid-c-1: minmax(100px, 120px);
+  --grid-c-2: minmax(50px, 200px);
   --grid-c-3: minmax(50px, 100px);
   --grid-c-4: minmax(30px, 50px);
   // --grid-r-1: minmax(35px, 50px);
@@ -462,42 +462,54 @@ layout
   }
 
   .daily {
+
     .daily-container {
-      display: flex;
-      justify-content: space-between;
-      // line-height: 1.55;
-      // align-items: baseline;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1em 1fr;
+      grid-template-rows: 1fr 1fr;
 
       .temp-display {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
         font-size: clamp(2.4rem, 3.6vw, 4.8rem);
         font-weight: bold;
-        margin: 0 0 0 1em;
+        margin: 0 0 0 0;
         padding: 0;
+        // line-height: 1em;
     
         span {
           font-size: clamp(1.4rem, 2.1vw, 3rem);
         }
+      }
 
-        span.hilo {
-          display: block;
-          font-size: 1.1rem;
-          font-weight: bolder;
+      .condition-icon {
+        grid-column: 4 / -1;
+        grid-row: 1 / 2;
+        width: 100%;
+        display: block;
+        align-self: center;
+
+        img {
+          width: 100%;
+          height: auto;
         }
       }
-    
-      .condition {
-        text-align: center;
-        margin-right: 2em;
 
-        span.condition-icon {
-          width: 5vw;
-          display: block;
-    
-          img {
-            width: 100%;
-            height: auto;
-          }
-        }
+      .hilo {
+        grid-column: 2 / 3;
+        grid-row: 2 / -1;
+        display: block;
+        font-size: 1.1rem;
+        font-weight: bolder;
+      }
+      
+      .condition {
+        grid-column: 4 / -1;
+        grid-row: 2 / -1;
+        line-height: 0.95;
+        padding-top: 1px;
+        font-size: clamp(1rem, 1.3vw 1.3rem);
+        text-align: center;
       }
     }
   }

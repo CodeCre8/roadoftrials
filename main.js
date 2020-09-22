@@ -97,11 +97,10 @@ const apiWeather = {
   baseurl: 'https://api.openweathermap.org/data/2.5/'
 }
 const weatherIcon = 'https://openweathermap.org/img/wn/'
-// const dailyDisplay = document.querySelector('#daily')
 const tempDisplay = document.querySelector('.temp-display')
-// const conditionIcon = document.querySelector('.condition-icon')
-const condition = document.querySelector('.condition')
-// const currentDate = document.querySelector('.date')
+const conditionIcon = document.querySelector('.condition-icon')
+const hiloDisplay = document.querySelector('.hilo')
+const conditionDisplay = document.querySelector('.condition')
 
 /* 
 * * * * * Display random quote 
@@ -157,8 +156,10 @@ function getWeather() {
 
 /* display daily weather */
 function displayWeather(weather) {
-  tempDisplay.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span><span class="hilo">Hi: ${Math.round(weather.main.temp_max)} / Lo: ${Math.round(weather.main.temp_min)}`
-  condition.innerHTML = `<span class="condition-icon"><img src="${weatherIcon}${weather.weather[0].icon}@2x.png" alt="${weather.weather[0].description}"></span>${weather.weather[0].description}`
+  tempDisplay.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span>`
+  hiloDisplay.innerHTML = `Hi: ${Math.round(weather.main.temp_max)} / Lo: ${Math.round(weather.main.temp_min)}`
+  conditionIcon.innerHTML = `<img src="${weatherIcon}${weather.weather[0].icon}@2x.png" alt="${weather.weather[0].description}">`
+  conditionDisplay.innerHTML = `${weather.weather[0].description}`
 }
 
 /* get today's date */
