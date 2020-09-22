@@ -51,7 +51,7 @@ Variables
   --ff-primary: "Roboto Slab", serif;
   --ff-secondary: "Roboto Condensed", sans-serif;
   /* animation */
-  --transition: all .5s ease-in-out;
+  --transition: all .3s ease-in-out;
   /* layout */
   // --margin-lg: 1em;
   // --margin-sm: .75em;
@@ -123,6 +123,9 @@ h3 {
 h4 {
   font-size: clamp(1.4rem, 1.6vw, 1.8rem);
 }
+h5 {
+  font-size: clamp(1.2rem, 1.4vw, 1.6rem);
+}
 p {
   font-size: clamp(1rem, 1.6vw, 2rem);
   margin-bottom: .5em;
@@ -176,156 +179,141 @@ layout
     "time time time time time";
 }
 
-.container {
-  margin: 1em;
-}
-
-.hide {
-  display: none;
-}
-
-/* Header */
-// header {
-  // position: relative;
-  
-  .logo {
-    position: relative;
-    grid-area: header;
-  }
-
-  h1 {
-    display: none;
-  }
-
-  svg {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    opacity: .7;
-    // margin-bottom: 2em;
-    mix-blend-mode: multiply;
-  }
-
-  .about {
-    grid-area: about;
-  }
-  
-  .daily {
-    grid-area: daily;
-    align-self: end;
-    font-family: var(--ff-primary);
-
-    .hilo,
-    .condition {
-      font-family: var(--ff-secondary);
-    }
-  }
-
-  .quote {
-    grid-area: quote;
-    background-size: cover;
-    background-position: cover;
-
-    // background: var(--clr-grey-8);
-    .quote-container {
-      display: none;
-      .wrods,
-      .author {
-        text-shadow: .5em .5em 0 0 rgba(0, 0, 0, 0.5);
-      }
-
-      .words {
-        font-size: clamp(2.4rem, 3vw, 4.8rem);
-        color: rgba(255, 255, 255, .7);
-        margin-bottom: .5em;
-        letter-spacing: .005em;
-      }
-      .author {
-        font-style: italic;
-        color: var(--clr-lt-faded);
-
-        &::before {
-          content: "– ";
-
-        }
-      }
-    }
-  }
-
-  .snake {
-    grid-area: snake;
-    background: var(--clr-grey-7);
-  }
-
-  .weather {
-    grid-area: weather;
-    background: var(--clr-grey-7);
-  }
-
-  .quiz {
-    grid-area: quiz;
-    background: var(--clr-grey-7);
-  }
-
-  .note {
-    grid-area: note;
-    background: var(--clr-grey-6);
-  }
-
-  .link {
-    grid-area: link;
-    background: var(--clr-grey-7);
-  }
-
-  // .counter {
-  //   grid-area: counter;
-  // }
-
-  .countdown {
-    grid-area: time;
-    background: var(--clr-grey-7);
-    // justify-self: stretch;
-    // grid-column: 1 / -1;
-    // grid-row: 6 / -1;
-  }
-// }
-
-/* Main */
-// main {
-//   margin: 1em;
-  // display: grid;
-  // grid-gap: 1em;
-  // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-// }
-
-// .container {
-//   margin: 2em;
-// }
-
-section {
+.app-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1em;
   border-radius: var(--radius);
+  cursor: pointer;
+}
+
+// .container {
+//   margin: 1em;
+// }
+
+.hide {
+  display: none;
+}
+  
+.logo {
+  position: relative;
+  grid-area: header;
+
+  h1 {
+    display: none;
+  }
 }
 
 
 
+svg {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  opacity: .7;
+  // margin-bottom: 2em;
+  mix-blend-mode: multiply;
+}
 
+.about {
+  grid-area: about;
+}
 
-  
+.daily {
+  grid-area: daily;
+  align-self: end;
+  font-family: var(--ff-primary);
+  color: var(--clr-grey-3);
 
+  .hilo,
+  .condition {
+    font-family: var(--ff-secondary);
+  }
+}
 
-// footer {
+.quote {
+  grid-area: quote;
+  background-size: cover;
+  background-position: cover;
+  cursor: none;
 
-  // #countdown.countdown-container {
-  //   grid-column: 1 / -1;
-  //   background: var(--clr-grey-3);
-  //   justify-self: end;
-  // }
-  
-// }
+  // background: var(--clr-grey-8);
+  .quote-container {
+    display: none;
+    .wrods,
+    .author {
+      text-shadow: .5em .5em 0 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .words {
+      font-size: clamp(2.4rem, 3vw, 4.2rem);
+      color: rgba(255, 255, 255, .7);
+      margin-bottom: .5em;
+      letter-spacing: .008em;
+      line-height: 1em;
+    }
+    .author {
+      font-style: italic;
+      color: var(--clr-lt-faded);
+
+      &::before {
+        content: "– ";
+
+      }
+    }
+  }
+}
+
+.snake {
+  grid-area: snake;
+  background: var(--clr-grey-7);
+}
+
+.weather {
+  grid-area: weather;
+  background: var(--clr-grey-7);
+}
+
+.quiz {
+  grid-area: quiz;
+  background: var(--clr-grey-7);
+}
+
+.note {
+  grid-area: note;
+  background: var(--clr-grey-6);
+}
+
+.link {
+  grid-area: link;
+  background: var(--clr-grey-7);
+}
+
+.countdown {
+  grid-area: time;
+  padding: 1em;
+
+  h5 {
+    font-family: var(--ff-primary);
+  }
+
+  .timer {
+    display: flex;
+    justify-content: space-between;
+
+    .timer-format {
+      text-align: center;
+
+      h1 {
+        color: var(--clr-grey-8);
+        // text-shadow: 1px 0px 0px rgba(0, 0, 0, .3), 0px 1px 0px rgba(0, 0, 0, .3), ;
+        -webkit-text-stroke: 1px var(--clr-grey-4);
+        -webkit-text-fill-color: var(--clr-white);
+}
+    }
+  }
+}
 
 @media (min-width: 960px) {
 
@@ -374,7 +362,7 @@ section {
   
   .title {
     position: absolute;
-    top: -10px;
+    top: -7px;
     left: 10px;
     // background: var(--clr-grey-8);
     
@@ -386,13 +374,13 @@ section {
   }
 
   .about {
-    border-top: 20px solid var(--clr-grey-4);
+    border-top: 20px solid var(--clr-grey-7);
 
     .about-container {
       border-bottom-right-radius: var(--radius);
       border-bottom-left-radius: var(--radius);
-      background: var(--clr-grey-8);
-      opacity: .8;
+      background: rgba(188, 204, 220, .8);
+      // opacity: .8;
       width: 100%;
       padding: 1em;
       clip-path: inset(0% 0% 100% 0%);
@@ -424,7 +412,7 @@ section {
     .daily-container {
       display: flex;
       justify-content: space-between;
-      line-height: 1.55;
+      // line-height: 1.55;
       // align-items: baseline;
 
       .temp-display {
@@ -434,26 +422,28 @@ section {
         padding: 0;
     
         span {
-          font-size: clamp(1.6rem, 2.4vw, 3.6rem);
+          font-size: clamp(1.4rem, 2.1vw, 3rem);
         }
 
         span.hilo {
           display: block;
           font-size: 1.1rem;
+          font-weight: bolder;
         }
       }
     
-    .condition {
-      text-align: center;
-    }
+      .condition {
+        text-align: center;
+        margin-right: 2em;
 
-    span.condition-icon {
-      width: 5vw;
-      display: block;
-
-        img {
-          width: 100%;
-          height: auto;
+        span.condition-icon {
+          width: 5vw;
+          display: block;
+    
+          img {
+            width: 100%;
+            height: auto;
+          }
         }
       }
     }

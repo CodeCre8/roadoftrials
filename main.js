@@ -81,7 +81,7 @@ const quotes = [
 ]
 
 /* 
-Daily Weather 
+* * * * *Daily Weather 
 */
 // openweather
 const city = 'Toronto'
@@ -97,7 +97,7 @@ const condition = document.querySelector('.condition')
 // const currentDate = document.querySelector('.date')
 
 /* 
-Display random quote 
+* * * * * Display random quote 
 */
 const bkgdGradient = 'linear-gradient(to bottom, rgba(145, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),'
 const numItemsToGenerate = 1; 
@@ -113,12 +113,28 @@ const quoteDisplay = document.querySelector('.words')
 const authorDisplay = document.querySelector('.author')
 const contributor = document.querySelector('.contributor')
 
+/* 
+* * * * * Countdown timer
+*/
+const countdownContainer = document.querySelector('.countdown-container')
+const todayDateDisplay = document.querySelector('.today')
+const timerDisplay = document.querySelectorAll('.timer-format .timer-display')
 
 window.addEventListener('load', () => {
-  // get weather
+
+  /* get weather */
   getWeather()
-  // display quote
-  displayQuote()
+
+  /* display quote */
+  // displayQuote()
+
+  /* display remaining days */
+  // displayToday()
+
+  /* display Timer */
+  daysRemaining()
+  let countdown = setInterval(daysRemaining, 1000)
+
 })
 
 /* retrieve weather data from openweather */
@@ -132,20 +148,63 @@ function getWeather() {
 
 /* display daily weather */
 function displayWeather(weather) {
-  tempDisplay.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span><span class="hilo">Hi: ${weather.main.temp_max} / Lo: ${weather.main.temp_min}`
+  tempDisplay.innerHTML = `${Math.round(weather.main.temp)}<span>&deg;c</span><span class="hilo">Hi: ${Math.round(weather.main.temp_max)} / Lo: ${Math.round(weather.main.temp_min)}`
   condition.innerHTML = `<span class="condition-icon"><img src="${weatherIcon}${weather.weather[0].icon}@2x.png" alt="${weather.weather[0].description}"></span>${weather.weather[0].description}`
 }
 
 /* get today's date */
-function getTodayDate() {
-  //get date
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = mns[today.getMonth()]
-  const date = today.getDate()
-  const day = wkds[today.getDay()]
+// function displayToday() {
+//   // calculate today's info
+//  const todayDate = new Date()
+//   const year = todayDate.getFullYear()
+//   const month = mns[todayDate.getMonth()]
+//   const date = todayDate.getDate()
+//   const day = wkds[todayDate.getDay()]
+//   // display date
+//   todayDateDisplay.textContent = `${day}, ${month} ${date} ${year}`
+// }
 
-  currentDate.textContent = `${day}, ${month} ${date} ${year}`
+/* calculate days remaining in 2020 */
+function daysRemaining() {
+  // days remained in 2020 in unit of ms
+  const checkToday = new Date()
+  const futureDate = new Date(2021,0,0,0,0,0)
+  let timeRemained = futureDate - checkToday
+
+  // 1 sec = 1000ms
+  // 1 min = 60sec
+  // 1 hr = 60min
+  // 1 day = 24hr
+
+  // calculate units in ms
+  const oneDay = 24 * 60 * 60 * 1000
+  const oneHr = 60 * 60 * 1000
+  const oneMin = 60 * 1000 
+  const oneSec = 1 * 1000
+  
+  // calculate remaining time in days, hours, minutes, secs
+  let daysUntil = Math.floor(timeRemained / oneDay)
+  let hrsUntil = Math.floor((timeRemained % oneDay) / oneHr)
+  let minsUntil = Math.floor((timeRemained % oneHr) / oneMin)
+  let secsUntil = Math.floor((timeRemained % oneMin) / oneSec)
+  
+  let timeRemain = [daysUntil, hrsUntil, minsUntil, secsUntil]
+ 
+  function format(item) {
+    if(item < 10) {
+      return `0${item}`
+    }
+    return item
+  }
+
+  timerDisplay.forEach((until, index) => {
+    until.innerHTML = format(timeRemain[index])
+  })
+  
+  if(timeRemained < 0) {
+    clearInterval(countdown)
+    countdownContainer.innerHTML = `<h2>Happy 2021. Begin anew.</2>`
+  }
 }
 
 /* display random quote */
@@ -168,17 +227,14 @@ function displayQuote() {
 }
 
 /* fetch random unsplash */
-function fetchUnsplash(randomPhotoIndex){
-  fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
-    .then((response)=> {    
-      quoteBkgd.style.backgroundImage = `${bkgdGradient}url("${response.url}")`
-      contributor.innerHTML = `<a href="${photoLink}">${photoCreator}</a>`
-    })
-}
+// function fetchUnsplash(randomPhotoIndex){
+//   fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
+//     .then((response)=> {    
+//       quoteBkgd.style.backgroundImage = `${bkgdGradient}url("${response.url}")`
+//       contributor.innerHTML = `<a href="${photoLink}">${photoCreator}</a>`
+//     })
+// }
 
-fetchUnsplash()
-// https://source.unsplash.com/dark/800x600
-// https://unsplash.it/700/100
+// fetchUnsplash()
 
-// fetch(`https://source.unsplash.com/collection/${collectionID}/600x600/`)
 

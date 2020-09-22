@@ -50,7 +50,7 @@ Variables
   --ff-primary: "Roboto Slab", serif;
   --ff-secondary: "Roboto Condensed", sans-serif;
   /* animation */
-  --transition: all .5s ease-in-out;
+  --transition: all .3s ease-in-out;
   /* layout */
   --spacing: 0.25rem;
   --radius: 1rem;
@@ -129,6 +129,10 @@ h4 {
   font-size: clamp(1.4rem, 1.6vw, 1.8rem);
 }
 
+h5 {
+  font-size: clamp(1.2rem, 1.4vw, 1.6rem);
+}
+
 p {
   font-size: clamp(1rem, 1.6vw, 2rem);
   margin-bottom: .5em;
@@ -181,15 +185,25 @@ layout
       grid-template-areas: "header header header . daily" "header header header . ." "about quote quote snake snake" "about weather weather quiz quiz" "about note note link link" "time time time time time";
 }
 
-.container {
-  margin: 1em;
+.app-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1em;
+  border-radius: var(--radius);
+  cursor: pointer;
 }
 
 .hide {
   display: none;
 }
 
-/* Header */
 .logo {
   position: relative;
   -ms-grid-row: 1;
@@ -199,7 +213,7 @@ layout
   grid-area: header;
 }
 
-h1 {
+.logo h1 {
   display: none;
 }
 
@@ -226,6 +240,7 @@ svg {
       -ms-grid-row-align: end;
       align-self: end;
   font-family: var(--ff-primary);
+  color: var(--clr-grey-3);
 }
 
 .daily .hilo,
@@ -240,6 +255,7 @@ svg {
   grid-area: quote;
   background-size: cover;
   background-position: cover;
+  cursor: none;
 }
 
 .quote .quote-container {
@@ -252,10 +268,11 @@ svg {
 }
 
 .quote .quote-container .words {
-  font-size: clamp(2.4rem, 3vw, 4.8rem);
+  font-size: clamp(2.4rem, 3vw, 4.2rem);
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: .5em;
-  letter-spacing: .005em;
+  letter-spacing: .008em;
+  line-height: 1em;
 }
 
 .quote .quote-container .author {
@@ -312,22 +329,30 @@ svg {
   -ms-grid-column: 1;
   -ms-grid-column-span: 5;
   grid-area: time;
-  background: var(--clr-grey-7);
+  padding: 1em;
 }
 
-/* Main */
-section {
+.countdown h5 {
+  font-family: var(--ff-primary);
+}
+
+.countdown .timer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 1em;
-  border-radius: var(--radius);
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.countdown .timer .timer-format {
+  text-align: center;
+}
+
+.countdown .timer .timer-format h1 {
+  color: var(--clr-grey-8);
+  -webkit-text-stroke: 1px var(--clr-grey-4);
+  -webkit-text-fill-color: var(--clr-white);
 }
 
 @media (min-width: 960px) {
@@ -344,7 +369,7 @@ section {
   }
   .title {
     position: absolute;
-    top: -10px;
+    top: -7px;
     left: 10px;
   }
   .title svg {
@@ -353,13 +378,12 @@ section {
     max-width: 600px;
   }
   .about {
-    border-top: 20px solid var(--clr-grey-4);
+    border-top: 20px solid var(--clr-grey-7);
   }
   .about .about-container {
     border-bottom-right-radius: var(--radius);
     border-bottom-left-radius: var(--radius);
-    background: var(--clr-grey-8);
-    opacity: .8;
+    background: rgba(188, 204, 220, 0.8);
     width: 100%;
     padding: 1em;
     -webkit-clip-path: inset(0% 0% 100% 0%);
@@ -391,7 +415,6 @@ section {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    line-height: 1.55;
   }
   .daily .daily-container .temp-display {
     font-size: clamp(2.4rem, 3.6vw, 4.8rem);
@@ -400,20 +423,22 @@ section {
     padding: 0;
   }
   .daily .daily-container .temp-display span {
-    font-size: clamp(1.6rem, 2.4vw, 3.6rem);
+    font-size: clamp(1.4rem, 2.1vw, 3rem);
   }
   .daily .daily-container .temp-display span.hilo {
     display: block;
     font-size: 1.1rem;
+    font-weight: bolder;
   }
   .daily .daily-container .condition {
     text-align: center;
+    margin-right: 2em;
   }
-  .daily .daily-container span.condition-icon {
+  .daily .daily-container .condition span.condition-icon {
     width: 5vw;
     display: block;
   }
-  .daily .daily-container span.condition-icon img {
+  .daily .daily-container .condition span.condition-icon img {
     width: 100%;
     height: auto;
   }
