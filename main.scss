@@ -213,16 +213,25 @@ layout
   .modal-container {
     position: relative;
     display: grid;
-    place-items: center;
+    align-content: flex-start;
     height: 100vh;
 
     .modal-content {
       width: 75vw;
       margin: 0 auto;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
       color: var(--clr-white);
+      text-align: center;
+
+      .this-app-title {
+        font-size: clamp(2.2rem, 3.6vw, 3.8rem);
+        margin: 1.25em;
+      }
+
+      .app-area {
+        width: 100%;
+        height: 75vh;
+        background: red;
+      }
     }
     
     .close-modal {
@@ -296,10 +305,9 @@ layout
 
 .daily {
   grid-area: daily;
-  // align-self: end;
   font-family: var(--ff-primary);
   color: var(--clr-grey-4);
-}
+
 
   .daily-container {
     display: flex;
@@ -313,7 +321,7 @@ layout
     .temp-display {
       // grid-column: 2 / 3;
       // grid-row: 1 / 2;
-      font-size: clamp(3rem, 3.8vw, 4rem);
+      font-size: clamp(3.6rem, 4vw, 4.2rem);
       font-weight: bold;
       margin: 0 0 0 0;
       padding: 0;
@@ -329,10 +337,10 @@ layout
       // grid-column: 4 / -1;
       // grid-row: 1 / 2;
       width: 100%;
-      max-width: 100px;
+      max-width: 70px;
       display: block;
       align-self: center;
-      // padding-top: .6em;
+      margin-top: -.25em;
       order: 3;
 
       img {
@@ -359,9 +367,11 @@ layout
       font-size: clamp(0.9rem, 1.2vw, 1.4rem);
       text-align: center;
       font-family: var(--ff-secondary);
+      margin-top: -.75em;
       order: 4;
     }
   }
+}
 
 .quote {
   grid-area: quote;
@@ -460,13 +470,6 @@ layout
 
 @media (min-width: 960px) {
 
-  // --grid-c-1: minmax(90px, 120px);
-  // --grid-c-2: minmax(80px, 110px);
-  // --grid-c-3: minmax(70px, 100px);
-  // --grid-r-1: minmax(30px, 50px);
-  // --grid-r-2: minmax(20px, 40px);
-  // --grid-r-3: minmax(10px, 30px);
-
   .wrapper {
     position: relative;
     max-width: var(--max-width);
@@ -546,9 +549,11 @@ layout
         grid-column: 4 / -1;
         grid-row: 1 / 2;
         width: 100%;
+        max-width: 10vw;
         display: block;
         align-self: center;
         padding-top: .6em;
+        margin-top: 0;
 
         img {
           width: 100%;
@@ -560,7 +565,7 @@ layout
         grid-column: 2 / 3;
         grid-row: 2 / -1;
         display: block;
-        font-size: 1.1rem;
+        font-size: clamp(.9rem, 1vw, 1.3rem);
         font-weight: bolder;
       }
       
@@ -569,8 +574,9 @@ layout
         grid-row: 2 / -1;
         line-height: 0.95;
         padding-top: 1px;
-        font-size: clamp(1rem, 1.3vw 1.3rem);
+        font-size: clamp(.9rem, 1vw 1.3rem);
         text-align: center;
+        margin-top: 0;
       }
     }
   }
