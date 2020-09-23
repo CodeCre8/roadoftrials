@@ -62,13 +62,13 @@ Variables
   --max-width: 1280px;
   --fixed-width: 620px;
   /* grid */
-  --grid-c-1: minmax(100px, 120px);
-  --grid-c-2: minmax(50px, 200px);
-  --grid-c-3: minmax(50px, 100px);
-  --grid-c-4: minmax(30px, 50px);
+  --grid-c-1: minmax(100px, 180px);
+  --grid-c-2: minmax(90px, 160px);
+  --grid-c-3: minmax(50px, 1400px);
+  --grid-c-m: minmax(50px, 200px);
   // --grid-r-1: minmax(35px, 50px);
   --grid-r-1: minmax(15px, 200px);
-  --grid-r-2: minmax(15px, 200px);
+  --grid-r-m: minmax(20px, 100px);
   // --grid-r-2: minmax(60px, 80px);
   // --grid-r-3: minmax(40px, 60px);
 }
@@ -173,12 +173,13 @@ layout
   // justify-content: space-between;
   display: grid;
   grid-template-columns: 
-    repeat(4, var(--grid-c-2));
+    repeat(4, var(--grid-c-m));
   grid-gap: 1em;
-  grid-template-rows: 50px repeat(7, var(--grid-r-2));
+  grid-template-rows: 50px repeat(7, var(--grid-r-m));
   grid-template-areas:
     "about about about about"
     "header header header daily"
+    "header header header ."
     "header header header ."
     "quote quote quote quote"
     "quote quote quote quote"
@@ -295,15 +296,72 @@ layout
 
 .daily {
   grid-area: daily;
-  align-self: end;
+  // align-self: end;
   font-family: var(--ff-primary);
   color: var(--clr-grey-4);
-
-  .hilo,
-  .condition {
-    font-family: var(--ff-secondary);
-  }
 }
+
+  .daily-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1em;
+    // grid-template-columns: 1fr .5em 1fr;
+    // grid-template-rows: 65px 20px;
+
+    .temp-display {
+      // grid-column: 2 / 3;
+      // grid-row: 1 / 2;
+      font-size: clamp(3rem, 3.8vw, 4rem);
+      font-weight: bold;
+      margin: 0 0 0 0;
+      padding: 0;
+      order: 1;
+      // line-height: 1em;
+  
+      span {
+        font-size: clamp(2rem, 2.4vw, 3rem);
+      }
+    }
+
+    .condition-icon {
+      // grid-column: 4 / -1;
+      // grid-row: 1 / 2;
+      width: 100%;
+      max-width: 100px;
+      display: block;
+      align-self: center;
+      // padding-top: .6em;
+      order: 3;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .hilo {
+      // grid-column: 2 / 3;
+      // grid-row: 2 / -1;
+      display: block;
+      font-size: clamp(.9rem, 1.2vw, 1.4rem);
+      font-weight: bolder;
+      font-family: var(--ff-secondary);
+      order: 2;
+    }
+    
+    .condition {
+      // grid-column: 4 / -1;
+      // grid-row: 2 / -1;
+      line-height: 0.95;
+      padding-top: 1px;
+      font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+      text-align: center;
+      font-family: var(--ff-secondary);
+      order: 4;
+    }
+  }
 
 .quote {
   grid-area: quote;
@@ -429,9 +487,9 @@ layout
       ". . . about about about about about . . ."
       ". . . about about about about about . . ."
       ". . . . .header header header header . ."
-      ". . . . . header header header header . ."
-      ". . . . . header header header header . ."
-      ". . . daily daily . . . . . ."
+      ". . . daily daily header header header header . ."
+      ". . . daily daily header header header header . ."
+      ". . quote quote quote quote . . . . ."
       ". . quote quote quote quote . . . . ."
       "quiz quiz quote quote quote quote . . . . ."
       "quiz quiz quote quote quote quote . . snake snake ."
@@ -463,16 +521,17 @@ layout
   }
 
   .daily {
+    align-self: end;
 
     .daily-container {
       display: grid;
       grid-template-columns: 1fr 1fr 1em 1fr;
-      grid-template-rows: 55px 20px;
+      grid-template-rows: 65px 20px;
 
       .temp-display {
         grid-column: 2 / 3;
         grid-row: 1 / 2;
-        font-size: clamp(2.4rem, 3.6vw, 4.8rem);
+        font-size: clamp(2rem, 3.6vw, 4.8rem);
         font-weight: bold;
         margin: 0 0 0 0;
         padding: 0;

@@ -59,12 +59,12 @@ Variables
   --max-width: 1280px;
   --fixed-width: 620px;
   /* grid */
-  --grid-c-1: minmax(100px, 120px);
-  --grid-c-2: minmax(50px, 200px);
-  --grid-c-3: minmax(50px, 100px);
-  --grid-c-4: minmax(30px, 50px);
+  --grid-c-1: minmax(100px, 180px);
+  --grid-c-2: minmax(90px, 160px);
+  --grid-c-3: minmax(50px, 1400px);
+  --grid-c-m: minmax(50px, 200px);
   --grid-r-1: minmax(15px, 200px);
-  --grid-r-2: minmax(15px, 200px);
+  --grid-r-m: minmax(20px, 100px);
 }
 
 /*
@@ -181,12 +181,12 @@ layout
   padding: 0 2em 3em 2em;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (var(--grid-c-2))[4];
-      grid-template-columns: repeat(4, var(--grid-c-2));
+  -ms-grid-columns: (var(--grid-c-m))[4];
+      grid-template-columns: repeat(4, var(--grid-c-m));
   grid-gap: 1em;
-  -ms-grid-rows: 50px (var(--grid-r-2))[7];
-      grid-template-rows: 50px repeat(7, var(--grid-r-2));
-      grid-template-areas: "about about about about" "header header header daily" "header header header ." "quote quote quote quote" "quote quote quote quote" "snake snake snake snake" "weather weather quiz quiz" "note note link link" "time time time time";
+  -ms-grid-rows: 50px (var(--grid-r-m))[7];
+      grid-template-rows: 50px repeat(7, var(--grid-r-m));
+      grid-template-areas: "about about about about" "header header header daily" "header header header ." "header header header ." "quote quote quote quote" "quote quote quote quote" "snake snake snake snake" "weather weather quiz quiz" "note note link link" "time time time time";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -257,7 +257,7 @@ layout
 .logo {
   position: relative;
   -ms-grid-row: 2;
-  -ms-grid-row-span: 2;
+  -ms-grid-row-span: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: header;
@@ -320,20 +320,81 @@ layout
   -ms-grid-row: 2;
   -ms-grid-column: 4;
   grid-area: daily;
-  -ms-flex-item-align: end;
-      -ms-grid-row-align: end;
-      align-self: end;
   font-family: var(--ff-primary);
   color: var(--clr-grey-4);
 }
 
-.daily .hilo,
-.daily .condition {
+.daily-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1em;
+}
+
+.daily-container .temp-display {
+  font-size: clamp(3rem, 3.8vw, 4rem);
+  font-weight: bold;
+  margin: 0 0 0 0;
+  padding: 0;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.daily-container .temp-display span {
+  font-size: clamp(2rem, 2.4vw, 3rem);
+}
+
+.daily-container .condition-icon {
+  width: 100%;
+  max-width: 100px;
+  display: block;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+
+.daily-container .condition-icon img {
+  width: 100%;
+  height: auto;
+}
+
+.daily-container .hilo {
+  display: block;
+  font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+  font-weight: bolder;
   font-family: var(--ff-secondary);
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+.daily-container .condition {
+  line-height: 0.95;
+  padding-top: 1px;
+  font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+  text-align: center;
+  font-family: var(--ff-secondary);
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
 }
 
 .quote {
-  -ms-grid-row: 4;
+  -ms-grid-row: 5;
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
@@ -371,7 +432,7 @@ layout
 }
 
 .snake {
-  -ms-grid-row: 6;
+  -ms-grid-row: 7;
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-area: snake;
@@ -379,7 +440,7 @@ layout
 }
 
 .weather {
-  -ms-grid-row: 7;
+  -ms-grid-row: 8;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: weather;
@@ -387,7 +448,7 @@ layout
 }
 
 .quiz {
-  -ms-grid-row: 7;
+  -ms-grid-row: 8;
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
   grid-area: quiz;
@@ -395,7 +456,7 @@ layout
 }
 
 .note {
-  -ms-grid-row: 8;
+  -ms-grid-row: 9;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: note;
@@ -403,7 +464,7 @@ layout
 }
 
 .link {
-  -ms-grid-row: 8;
+  -ms-grid-row: 9;
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
   grid-area: link;
@@ -411,7 +472,7 @@ layout
 }
 
 .countdown {
-  -ms-grid-row: 9;
+  -ms-grid-row: 10;
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-area: time;
@@ -451,7 +512,7 @@ layout
     grid-gap: 1em;
     -ms-grid-rows: var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
         grid-template-rows: var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
-        grid-template-areas: ". . . about about about about about . . ." ". . . about about about about about . . ." ". . . . .header header header header . ." ". . . . . header header header header . ." ". . . . . header header header header . ." ". . . daily daily . . . . . ." ". . quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . snake snake ." ". . quote quote quote quote . . snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note link link link" ". . quote quote quote quote note note link link link" ". . quote quote quote quote weather weather link link link" ". . . time time time weather weather . . ." ". . . time time time weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . . . . . .";
+        grid-template-areas: ". . . about about about about about . . ." ". . . about about about about about . . ." ". . . . .header header header header . ." ". . . daily daily header header header header . ." ". . . daily daily header header header header . ." ". . quote quote quote quote . . . . ." ". . quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . snake snake ." ". . quote quote quote quote . . snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note link link link" ". . quote quote quote quote note note link link link" ". . quote quote quote quote weather weather link link link" ". . . time time time weather weather . . ." ". . . time time time weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . . . . . .";
     margin: 0 auto;
     padding: 0 3em 3em 3em;
   }
@@ -465,13 +526,18 @@ layout
     height: 40vh;
     max-width: 600px;
   }
+  .daily {
+    -ms-flex-item-align: end;
+        -ms-grid-row-align: end;
+        align-self: end;
+  }
   .daily .daily-container {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr 1em 1fr;
         grid-template-columns: 1fr 1fr 1em 1fr;
-    -ms-grid-rows: 55px 20px;
-        grid-template-rows: 55px 20px;
+    -ms-grid-rows: 65px 20px;
+        grid-template-rows: 65px 20px;
   }
   .daily .daily-container .temp-display {
     -ms-grid-column: 2;
@@ -480,7 +546,7 @@ layout
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1 / 2;
-    font-size: clamp(2.4rem, 3.6vw, 4.8rem);
+    font-size: clamp(2rem, 3.6vw, 4.8rem);
     font-weight: bold;
     margin: 0 0 0 0;
     padding: 0;
