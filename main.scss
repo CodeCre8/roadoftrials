@@ -309,6 +309,7 @@ layout
   grid-area: quote;
   background-size: cover;
   background-position: cover;
+  text-align: left;
   cursor: none;
 
   // background: var(--clr-grey-8);
@@ -429,7 +430,7 @@ layout
       ". . . about about about about about . . ."
       ". . . . .header header header header . ."
       ". . . . . header header header header . ."
-      ". . . daily daily header header header header . ."
+      ". . . . . header header header header . ."
       ". . . daily daily . . . . . ."
       ". . quote quote quote quote . . . . ."
       "quiz quiz quote quote quote quote . . . . ."
@@ -438,11 +439,11 @@ layout
       ". . quote quote quote quote note note snake snake ."
       ". . quote quote quote quote note note link link link"
       ". . quote quote quote quote note note link link link"
-      ". . . time time time weather weather link link link"
+      ". . quote quote quote quote weather weather link link link"
+      ". . . time time time weather weather . . ."
       ". . . time time time weather weather . . ."
       ". . . . . . weather weather . . ."
       ". . . . . . weather weather . . ."
-      ". . . . . . . . . . ."
       ". . . . . . . . . . .";
       margin: 0 auto;
       padding: 0 3em 3em 3em;
@@ -466,7 +467,7 @@ layout
     .daily-container {
       display: grid;
       grid-template-columns: 1fr 1fr 1em 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: 55px 20px;
 
       .temp-display {
         grid-column: 2 / 3;
@@ -488,6 +489,7 @@ layout
         width: 100%;
         display: block;
         align-self: center;
+        padding-top: .6em;
 
         img {
           width: 100%;

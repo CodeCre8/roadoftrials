@@ -132,7 +132,7 @@ window.addEventListener('load', () => {
   getWeather()
 
   /* display quote */
-  // displayQuote()
+  displayQuote()
 
   /* display remaining days */
   // displayToday()
@@ -243,7 +243,7 @@ function fetchUnsplash(randomPhotoIndex){
   fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomPhotoIndex}`) 
     .then((response)=> {    
       quoteBkgd.style.backgroundImage = `${bkgdGradient}url("${response.url}")`
-      contributor.innerHTML = `<a href="${photoLink}">${photoCreator}</a>`
+      contributor.innerHTML = `Photo by <a href="${photoLink}">${photoCreator}</a> on <a href="https://unsplash.com/" targat="_blank">unsplash</a>`
     })
 }
 

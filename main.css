@@ -340,6 +340,7 @@ layout
   grid-area: quote;
   background-size: cover;
   background-position: cover;
+  text-align: left;
   cursor: none;
 }
 
@@ -450,7 +451,7 @@ layout
     grid-gap: 1em;
     -ms-grid-rows: var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
         grid-template-rows: var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1) var(--grid-r-1);
-        grid-template-areas: ". . . about about about about about . . ." ". . . about about about about about . . ." ". . . . .header header header header . ." ". . . . . header header header header . ." ". . . daily daily header header header header . ." ". . . daily daily . . . . . ." ". . quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . snake snake ." ". . quote quote quote quote . . snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note link link link" ". . quote quote quote quote note note link link link" ". . . time time time weather weather link link link" ". . . time time time weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . . . . . ." ". . . . . . . . . . .";
+        grid-template-areas: ". . . about about about about about . . ." ". . . about about about about about . . ." ". . . . .header header header header . ." ". . . . . header header header header . ." ". . . . . header header header header . ." ". . . daily daily . . . . . ." ". . quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . . . ." "quiz quiz quote quote quote quote . . snake snake ." ". . quote quote quote quote . . snake snake ." ". . quote quote quote quote note note snake snake ." ". . quote quote quote quote note note link link link" ". . quote quote quote quote note note link link link" ". . quote quote quote quote weather weather link link link" ". . . time time time weather weather . . ." ". . . time time time weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . weather weather . . ." ". . . . . . . . . . .";
     margin: 0 auto;
     padding: 0 3em 3em 3em;
   }
@@ -469,8 +470,8 @@ layout
     display: grid;
     -ms-grid-columns: 1fr 1fr 1em 1fr;
         grid-template-columns: 1fr 1fr 1em 1fr;
-    -ms-grid-rows: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+    -ms-grid-rows: 55px 20px;
+        grid-template-rows: 55px 20px;
   }
   .daily .daily-container .temp-display {
     -ms-grid-column: 2;
@@ -497,6 +498,7 @@ layout
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
+    padding-top: .6em;
   }
   .daily .daily-container .condition-icon img {
     width: 100%;
