@@ -141,21 +141,27 @@ a {
 /*  global classes */
 .btn {
   text-transform: uppercase;
-  background: transparent;
+  background: var(--clr-primary-10);
   color: var(--clr-black);
-  padding: 0.375em 0.75rem;
+  padding: 0.75em 1.25rem;
   letter-spacing: var(--spacing);
   display: inline-block;
   transition: var(--transition);
   font-size: 0.875rem;
-  border: 2px solid var(--clr-black);
+  border: unset;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: var(--radius);
 }
 .btn:hover {
   color: var(--clr-white);
-  background: var(--clr-black);
+  background: var(--clr-grey-7);
+  outline: none;
+  border: unset;
+}
+.bth:focus {
+  background: var(--clr-grey-7);
+  outline: none;
+  border: unset;
 }
 
 /* 
@@ -196,7 +202,7 @@ layout
   align-items: center;
   text-align: center;
   padding: 1em;
-  border-radius: var(--radius);
+  // border-radius: var(--radius);
   cursor: pointer;
 }
 
@@ -206,31 +212,53 @@ layout
   left: 0;
   bottom: 0;
   right: 0;
-  background: var(--clr-grey-1);
-  opacity: .9;
+  background:  hsla(205, 86%, 17%, 0.8);
   padding: 2em;
 
   .modal-container {
     position: relative;
     display: grid;
-    align-content: flex-start;
+    align-content: center;
     height: 100vh;
 
     .modal-content {
-      width: 75vw;
+      width: 80vw;
+      max-width: 480px;
       margin: 0 auto;
-      color: var(--clr-white);
+      color: var(--clr-grey-6);
       text-align: center;
 
       .this-app-title {
-        font-size: clamp(2.2rem, 3.6vw, 3.8rem);
-        margin: 1.25em;
+        font-size: clamp(1.8rem, 2.1vw, 2.4rem);
+        margin-bottom: 1em;
       }
 
       .app-area {
+        position: relative;
         width: 100%;
         height: 75vh;
-        background: red;
+        background: var(--clr-white);
+        padding: 0 2em 2em 2em;
+        border: 5px solid var(--clr-white);
+        border-radius: var(--radius);
+        overflow: scroll;
+
+        .app-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: sticky;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: auto;
+          background: var(--clr-white);
+          z-index: 99;
+
+          h4 {
+            margin: 1em 0;
+          }
+        }
       }
     }
     
@@ -241,6 +269,108 @@ layout
       font-size: 3rem;
       color: var(--clr-lt-faded);
       cursor: pointer;
+    }
+  }
+
+  .note-modal {
+
+    .app-area {
+
+      .note-header {
+        flex-flow: column;
+      }
+
+      form {
+        width: 75%;
+
+        textarea {
+          display: block;
+          width: 100%;
+          margin: 0;
+          padding: 1em;
+          background: var(--clr-primary-10);
+          border: none;
+          resize: none;
+  
+          &:focus {
+            background: none;
+            outline: none;
+            border: 1px solid var(--clr-primary-8);
+            
+            &::placeholder {
+              color: transparent;
+            }
+          }
+        }
+  
+        #note-submit {
+          display: block;
+          margin: 0 auto;
+          background: var(--clr-grey-8);
+          border-radius: 0;
+          width: 100%;
+          outline: none;
+          border: unset;
+  
+          &:hover {
+            background: var(--clr-grey-7);
+          }
+        }
+      }
+
+      .expand-btn {
+        width: 100%;
+        margin: 2em 0 0 0;
+        border-top: 2px solid var(--clr-grey-7);
+        cursor: pointer;
+
+        h5 {
+          text-align: right;
+          padding: 1em 0;
+        }
+
+        &:hover h5{
+          color: var(--clr-grey-4);
+        }
+      }
+    }
+  
+    .entries-area {
+
+      .entries-list {
+
+        .entry {
+          text-align: left;
+          margin: 0 0 1em 0;
+          background: var(--clr-grey-8);
+          overflow: hidden;
+
+          .entry-header {
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+            background: hsl(209, 34%, 30%);
+            font-size: clamp(1.2rem, 1.4vw, 1.6vw);
+            font-weight: bold;
+            color: var(--clr-white);
+            padding: 1em;
+
+            .note-date {
+              position: relative;
+              font-weight: bolder;
+              // margin: .3em 0 .5em 0;
+            }
+          }
+          
+
+          p {
+            padding: 1em;
+          }
+        }
+        .collapse-height {
+          height: 7vh;
+        }
+      }
     }
   }
 }
@@ -424,6 +554,8 @@ layout
 .note {
   grid-area: note;
   background: var(--clr-grey-6);
+  
+
 }
 
 .link {

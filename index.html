@@ -181,14 +181,43 @@
       </section>
     <!-- </footer> -->
     <!-- modal -->
-    <div id="modal" class="modal modal-overlay">
+    <div id="note-modal" class="modal modal-overlay">
+      <!-- modal-container -->
       <div class="modal-container">
-        <div class="modal-content note-container">
-          <h3 class="this-app-title">App</h3>
+        <!-- note-container -->
+        <div class="modal-content note-modal">
+          <h4 class="this-project">
+            A Note Keeping Project
+          </h4>
+          <p class="about-this-project">
+            This is a little info about this project.
+          </p>
+          <!-- app-area -->
           <div class="app-area">
+            <!-- note-header -->
+            <div class="app-header note-header">
+              <h4 class="this-app-title note-title">
+                Knowledge Vault
+              </h4>
+              <!-- form -->
+              <form id="entry-form">
+                <textarea name="note-input" id="note-input" cols="30" rows="3" placeholder="Write away..." ></textarea>
+                <button id="note-submit" class="btn" type="sumbit">Submit</button>
+              </form> 
+              <!-- expand button -->
+              <div class="expand-btn "><h5>Expand All</h5></div>
+            </div>
+            <!-- app main -->
+            <div class="app-main">
+              <div class="entries-area">
+                <!-- entries-list -->
+                <div class="entries-list">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="close-modal">
+        <div id="note-close" class="close-modal">
           <i class="fas fa-times"></i>
         </div>
       </div>
