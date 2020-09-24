@@ -250,24 +250,76 @@ function fetchUnsplash(randomPhotoIndex){
 /* 
 * * * * * Note App
 */
-const noteModal = document.querySelector('#note-modal')
 const noteApp = document.getElementById('note box-8')
-const noteInput = document.querySelector('#note-input')
-const noteSubmit = document.querySelector('#note-submit')
 const noteClose = document.querySelector('#note-close')
-const entriesDisplay = document.querySelector('.entries-list')
-const expandBtn = document.querySelector('.expand-btn')
-let entries = []
-let entryNum = 0
+const noteModal = document.querySelector('#note-modal')
+const noteContainer = document.querySelector('.modal-container')
 /* listen to all clickable events */
 noteApp.addEventListener('click', () => {
   noteModal.classList.remove('hide')
+  noteAppDom()
 })
 noteClose.addEventListener('click', () => {
   noteModal.classList.add('hide')
 })
+/* build app DOM */
+function noteAppDom() {
+
+  // These are the common elements shared by other app DOM
+  const modalContent = document.createElement('div')
+  modalContent.classList.add('modal-content', 'note-modal')
+  const projectTitle = document.createElement('h4')
+  projectTitle.textContent = 'A Note Keeping Project'
+  projectTitle.classList.add('this-project')
+  const projectInfo = document.createElement('p')
+  projectInfo.textContent = 'This is a little info about this project.'
+  projectInfo.classList.add('about-this-project')
+  const appArea = document.createElement('div')
+  appArea.classList.add('app-area')
+  const appHeader = document.createElement('div')
+  appHeader.classList.add('app-header', 'note-header')
+  // const appTitle = document.createElement('h4')
+  // appTitle.classList.add('this-app-title', 'note-title')
+  const appMain = document.createElement('div')
+  appMain.classList.add('app-Main')
+
+  // These are elements distinct for Note App 
+  // note title
+  const appTitle = `<h4 class="this-app-title note-title">Knowledge Vault</h4>`
+  // form
+  const appForm = `<form id="entry-form">
+  <textarea name="note-input" id="note-input" cols="30" rows="3" placeholder="Write away..." ></textarea>
+  <button id="note-submit" class="btn" type="sumbit">Submit</button>
+</form>`
+  // expand all btn
+  const expandAllBtn = `<div class="expand-btn"><h5>Expand All</h5></div>`
+  // entreies area
+  const entriesDiv = `<div class="entries-area"><div class="entries-list"></div></div>`
+
+
+  appHeader.innerHTML = `${appTitle}${appForm}${expandAllBtn}`
+  
+  appMain.innerHTML = `${entriesDiv}`
+  
+  appArea.append(appHeader, appMain)
+  modalContent.append(projectTitle, projectInfo, appArea)
+  noteContainer.prepend(modalContent)
+  
+
+}
+
+const noteInput = document.querySelector('#note-input')
+const noteSubmit = document.querySelector('#note-submit')
+const entriesDisplay = document.querySelector('.entries-list')
+const expandBtn = document.querySelector('.expand-btn')
+let entries = []
+let entryNum = 0
+/* select note HTML element */
+
+/* listen for click on expand all btn */
 expandBtn.addEventListener('click', () => {
-  expandAll()
+  // expandAll()
+  console.log(noteInput)
 })
 /* listen to note submit btn click */
 noteSubmit.addEventListener('click', (e) => {
@@ -283,7 +335,7 @@ noteSubmit.addEventListener('click', (e) => {
 })
 /* create new note entry */
 function createNote() {
-  // get current date and time
+//get current date and time
   const todayDate = new Date()
   const year = todayDate.getFullYear()
   const month = mns[todayDate.getMonth()]
@@ -293,7 +345,7 @@ function createNote() {
   const min = todayDate.getMinutes()
   let timestamp = todayDate.getTime()
 
-  // create new entry
+//create new entry
   let entry = {
     order: entryNum,
     date: `${day}, ${month} ${date} ${year}`,
@@ -306,7 +358,7 @@ function createNote() {
   // add new entry to entries array
   entries.push(entry)
 
-  // create DOM for entry
+//   // create DOM for entry
   const newNoteHeader = document.createElement('div')
   const noteIndex = document.createElement('div')
   const noteDate = document.createElement('div')
@@ -314,9 +366,9 @@ function createNote() {
   const newNote = document.createElement('div')
   const noteEntry = document.createElement('p')
 
-  // Check if min is single digit
+// Check if min is single digit
   let x = entry.min.toString()
-  // Add 0 in front of days with one digit
+// Add 0 in front of days with one digit
   if(x.length < 2) {
     entry.min = `0${entry.min}`
   }
@@ -337,7 +389,7 @@ function createNote() {
   newNote.append(newNoteHeader, noteEntry)
   entriesDisplay.prepend(newNote)
 
-  /* Add event listening to the single entry button */
+//   /* Add event listening to the single entry button */
   noteOpenBtn.addEventListener('click', (e) => {
 
     const listItem = e.target.parentNode.parentNode.parentNode
