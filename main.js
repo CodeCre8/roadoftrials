@@ -261,6 +261,7 @@ noteApp.addEventListener('click', () => {
 })
 noteClose.addEventListener('click', () => {
   noteModal.classList.add('hide')
+  noteContainer.innerHTML = "";
 })
 /* build app DOM */
 function noteAppDom() {
@@ -272,161 +273,162 @@ function noteAppDom() {
   projectTitle.textContent = 'A Note Keeping Project'
   projectTitle.classList.add('this-project')
   const projectInfo = document.createElement('p')
-  projectInfo.textContent = 'This is a little info about this project.'
+  projectInfo.textContent = 'This is a modified version of the "Diary Project" on Scrimba. The basic functions are in place. Next stage is to make it better by adding delete and filter functions.'
   projectInfo.classList.add('about-this-project')
   const appArea = document.createElement('div')
   appArea.classList.add('app-area')
   const appHeader = document.createElement('div')
   appHeader.classList.add('app-header', 'note-header')
-  // const appTitle = document.createElement('h4')
-  // appTitle.classList.add('this-app-title', 'note-title')
+  const appTitle = document.createElement('h3')
+  appTitle.textContent = 'Knowledge Vault'
+  appTitle.classList.add('this-app-title', 'note-title')
   const appMain = document.createElement('div')
   appMain.classList.add('app-Main')
+  
 
   // These are elements distinct for Note App 
-  // note title
-  const appTitle = `<h4 class="this-app-title note-title">Knowledge Vault</h4>`
   // form
   const appForm = `<form id="entry-form">
   <textarea name="note-input" id="note-input" cols="30" rows="3" placeholder="Write away..." ></textarea>
   <button id="note-submit" class="btn" type="sumbit">Submit</button>
 </form>`
   // expand all btn
-  const expandAllBtn = `<div class="expand-btn"><h5>Expand All</h5></div>`
+  // const expandAllBtn = `<div class="expand-btn"><h5>Expand All</h5></div>`
   // entreies area
   const entriesDiv = `<div class="entries-area"><div class="entries-list"></div></div>`
 
-
-  appHeader.innerHTML = `${appTitle}${appForm}${expandAllBtn}`
-  
+  appHeader.innerHTML = `${appForm}`
+  appHeader.prepend(appTitle)
   appMain.innerHTML = `${entriesDiv}`
   
   appArea.append(appHeader, appMain)
   modalContent.append(projectTitle, projectInfo, appArea)
   noteContainer.prepend(modalContent)
   
+  /* select note HTML element */
+  const noteInput = document.querySelector('#note-input')
+  const noteSubmit = document.querySelector('#note-submit')
+  const entriesDisplay = document.querySelector('.entries-list')
+  let entries = []
+  let entryNum = 0
 
-}
-
-const noteInput = document.querySelector('#note-input')
-const noteSubmit = document.querySelector('#note-submit')
-const entriesDisplay = document.querySelector('.entries-list')
-const expandBtn = document.querySelector('.expand-btn')
-let entries = []
-let entryNum = 0
-/* select note HTML element */
-
-/* listen for click on expand all btn */
-expandBtn.addEventListener('click', () => {
-  // expandAll()
-  console.log(noteInput)
-})
-/* listen to note submit btn click */
-noteSubmit.addEventListener('click', (e) => {
-  e.preventDefault()
-  if(noteInput.value === '') {
-    noteInput.value = 'You can\'t enter an empty thought. Type away 😊'
-    noteInput.value = ""
-  } else {
-    entryNum++
-    createNote()
-    noteInput.value = ""
-  }
-})
-/* create new note entry */
-function createNote() {
-//get current date and time
-  const todayDate = new Date()
-  const year = todayDate.getFullYear()
-  const month = mns[todayDate.getMonth()]
-  const date = todayDate.getDate()
-  const day = wkds[todayDate.getDay()]
-  const hr = todayDate.getHours()
-  const min = todayDate.getMinutes()
-  let timestamp = todayDate.getTime()
-
-//create new entry
-  let entry = {
-    order: entryNum,
-    date: `${day}, ${month} ${date} ${year}`,
-    hour: hr,
-    min: min,
-    timestamp: `${timestamp}`,
-    words: `${noteInput.value}`
-  }
-
-  // add new entry to entries array
-  entries.push(entry)
-
-//   // create DOM for entry
-  const newNoteHeader = document.createElement('div')
-  const noteIndex = document.createElement('div')
-  const noteDate = document.createElement('div')
-  const noteOpenBtn = document.createElement('div')
-  const newNote = document.createElement('div')
-  const noteEntry = document.createElement('p')
-
-// Check if min is single digit
-  let x = entry.min.toString()
-// Add 0 in front of days with one digit
-  if(x.length < 2) {
-    entry.min = `0${entry.min}`
-  }
-
-  newNoteHeader.classList.add('entry-header')
-  noteIndex.textContent = entry.order
-  noteDate.classList.add('note-date')
-  noteDate.textContent =`${entry.date} ${entry.hour}:${entry.min}`
-  noteOpenBtn.classList.add('note-open-close')
-  noteOpenBtn.innerHTML = '<i class="fa fa-angle-double-down"></i>'
-  newNote.classList.add(`note-${entryNum}`)
-  newNote.classList.add('entry')
-  newNote.classList.add('collapse-height')
-  noteEntry.textContent = entry.words
-
-
-  newNoteHeader.append(noteIndex, noteDate, noteOpenBtn)
-  newNote.append(newNoteHeader, noteEntry)
-  entriesDisplay.prepend(newNote)
-
-//   /* Add event listening to the single entry button */
-  noteOpenBtn.addEventListener('click', (e) => {
-
-    const listItem = e.target.parentNode.parentNode.parentNode
-    listItem.classList.toggle('collapse-height')
-
+  /* listen to note submit btn click */
+  noteSubmit.addEventListener('click', (e) => {
+    e.preventDefault()
+    if(noteInput.value === '') {
+      noteInput.value = 'You can\'t enter an empty thought. Type away 😊'
+    } else {
+      entryNum++
+      createNote()
+      noteInput.value = ""
+    }
   })
+  /* create new note entry */
+  function createNote() {
 
-}
+    //get current date and time
+    const todayDate = new Date()
+    const year = todayDate.getFullYear()
+    const month = mns[todayDate.getMonth()]
+    const date = todayDate.getDate()
+    const day = wkds[todayDate.getDay()]
+    const hr = todayDate.getHours()
+    const min = todayDate.getMinutes()
+    let timestamp = todayDate.getTime()
 
+  //create new entry
+    let entry = {
+      order: entryNum,
+      date: `${day}, ${month} ${date} ${year}`,
+      hour: hr,
+      min: min,
+      timestamp: `${timestamp}`,
+      words: `${noteInput.value}`
+    }
 
-/* build expand all and close all functions */
-function expandAll() {
+    // add new entry to entries array
+    entries.push(entry)
 
-  let allEntry = document.querySelectorAll('.entry')
+    // create DOM for entry
+    const newNoteHeader = document.createElement('div')
+    const noteIndex = document.createElement('div')
+    const noteDate = document.createElement('div')
+    const noteOpenBtn = document.createElement('div')
+    const newNote = document.createElement('div')
+    const noteEntry = document.createElement('p')
+    
+    // add expand all btn if there is any entry  
+    const expandAllBtn = document.createElement('div')
+    const expandBtnText = document.createElement('h5')
+    expandBtnText.textContent = 'Expand All'
+    expandAllBtn.classList.add('expand-btn')
 
-  if (expandBtn.innerHTML === '<h5>Expand All</h5>' && allEntry.length === 0) {
+    if (entries.length === 1) {
+      expandAllBtn.append(expandBtnText)
+      appHeader.append(expandAllBtn)
+    }
 
-    expandBtn.innerHTML = '<h5>Expand All</h5>'
-
-  } else if (expandBtn.innerHTML === '<h5>Expand All</h5>' && allEntry.length > 0) {
-
-    expandBtn.innerHTML = '<h5>Close All</h5>'
-
-    allEntry.forEach(item => {
-      if(item.classList.contains('collapse-height')) {
-        item.classList.remove('collapse-height')
-      } 
+    /* listen for click on expand all btn */
+    // const expandBtn = document.querySelector('.expand-btn')
+    const expandBtn = document.querySelector('.expand-btn')
+    expandBtn.addEventListener('click', () => {
+      expandAll()
     })
 
-  } else if (expandBtn.innerHTML === '<h5>Close All</h5>' && allEntry.length > 0) {
+  // Check if min is single digit
+    let x = entry.min.toString()
+  // Add 0 in front of days with one digit
+    if(x.length < 2) {
+      entry.min = `0${entry.min}`
+    }
 
-    allEntry.forEach(item => {
-      item.classList.add('collapse-height')
+    newNoteHeader.classList.add('entry-header')
+    noteIndex.textContent = entry.order
+    noteDate.classList.add('note-date')
+    noteDate.textContent =`${entry.date} ${entry.hour}:${entry.min}`
+    noteOpenBtn.classList.add('note-open-close')
+    noteOpenBtn.innerHTML = '<i class="fa fa-angle-double-down"></i>'
+    newNote.classList.add(`note-${entryNum}`)
+    newNote.classList.add('entry')
+    newNote.classList.add('collapse-height')
+    noteEntry.textContent = entry.words
+
+    newNoteHeader.append(noteIndex, noteDate, noteOpenBtn)
+    newNote.append(newNoteHeader, noteEntry)
+    entriesDisplay.prepend(newNote)
+
+    /* Add event listening to the single entry button */
+    noteOpenBtn.addEventListener('click', (e) => {
+      const listItem = e.target.parentNode.parentNode.parentNode
+      listItem.classList.toggle('collapse-height')
     })
 
-    expandBtn.innerHTML = '<h5>Expand All</h5>'
+    /* build expand all and close all functions */
+    function expandAll() {
+
+      let allEntry = document.querySelectorAll('.entry')
+
+      if (expandBtn.innerHTML === '<h5>Expand All</h5>' && allEntry.length > 0) {
+
+        expandBtn.innerHTML = '<h5>Close All</h5>'
+
+        allEntry.forEach(item => {
+          if(item.classList.contains('collapse-height')) {
+            item.classList.remove('collapse-height')
+          } 
+        })
+
+      } else if (expandBtn.innerHTML === '<h5>Close All</h5>' && allEntry.length > 0) {
+
+        allEntry.forEach(item => {
+          item.classList.add('collapse-height')
+        })
+
+        expandBtn.innerHTML = '<h5>Expand All</h5>'
+      }
+    }
   }
+
 }
 
 

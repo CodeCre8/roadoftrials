@@ -122,7 +122,7 @@ h2 {
   font-size: clamp(2.8rem, 3.4vw, 4rem);
 }
 h3 {
-  font-size: clamp(1.4rem, 1.8vw, 2.4rem);
+  font-size: clamp(1.8rem, 2vw, 2.4rem);
 }
 h4 {
   font-size: clamp(1.4rem, 1.6vw, 1.8rem);
@@ -131,7 +131,7 @@ h5 {
   font-size: clamp(1.2rem, 1.4vw, 1.6rem);
 }
 p {
-  font-size: clamp(1rem, 1.6vw, 2rem);
+  font-size: clamp(1.2rem, 1.4vw, 1.6rem);
   margin-bottom: .5em;
   color: var(--clr-grey-5);
 }
@@ -212,7 +212,7 @@ layout
   left: 0;
   bottom: 0;
   right: 0;
-  background:  hsla(205, 86%, 17%, 0.8);
+  background:  hsla(205, 86%, 17%, 0.9);
   padding: 2em;
 
   .modal-container {
@@ -228,9 +228,18 @@ layout
       color: var(--clr-grey-6);
       text-align: center;
 
+      .this-project,
+      .about-this-project {
+        color: rgba(255, 255, 255, .8);
+      }
+
+      .about-this-project {
+        margin: 1em 0;
+      }
+
       .this-app-title {
         font-size: clamp(1.8rem, 2.1vw, 2.4rem);
-        margin-bottom: 1em;
+        margin: 1em 0;
       }
 
       .app-area {
@@ -261,15 +270,16 @@ layout
         }
       }
     }
-    
-    .close-modal {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 3rem;
-      color: var(--clr-lt-faded);
-      cursor: pointer;
-    }
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    // z-index: 99;
+    font-size: 3rem;
+    color: var(--clr-lt-faded);
+    cursor: pointer;
   }
 
   .note-modal {
@@ -342,7 +352,7 @@ layout
         .entry {
           text-align: left;
           margin: 0 0 1em 0;
-          background: var(--clr-grey-8);
+          background: var(--clr-grey-6);
           overflow: hidden;
 
           .entry-header {
@@ -350,7 +360,7 @@ layout
             flex-flow: row;
             justify-content: space-between;
             background: hsl(209, 34%, 30%);
-            font-size: clamp(1.2rem, 1.4vw, 1.6vw);
+            font-size: clamp(1.4rem, 1.4vw, 1.4rem);
             font-weight: bold;
             color: var(--clr-white);
             padding: 1em;
@@ -363,6 +373,8 @@ layout
 
           p {
             padding: 1em;
+            font-size: clamp(1.4rem, 1.4vw, 1.4rem);
+            color: var(--clr-white);
           }
         }
         .collapse-height {
@@ -481,7 +493,7 @@ layout
       // grid-column: 2 / 3;
       // grid-row: 2 / -1;
       display: block;
-      font-size: clamp(.9rem, 1.2vw, 1.4rem);
+      font-size: clamp(1.2rem, 1.2vw, 1.4rem);
       font-weight: bolder;
       font-family: var(--ff-secondary);
       order: 2;
@@ -492,7 +504,7 @@ layout
       // grid-row: 2 / -1;
       line-height: 0.95;
       padding-top: 1px;
-      font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+      font-size: clamp(1.3rem, 1.3vw, 1.4rem);
       text-align: center;
       font-family: var(--ff-secondary);
       margin-top: -.75em;
