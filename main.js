@@ -266,30 +266,9 @@ noteApp.addEventListener('click', () => {
 noteClose.addEventListener('click', () => {
   noteModal.classList.add('hide')
 })
-
 expandBtn.addEventListener('click', () => {
-
   expandAll()
-  
 })
-
-function checkExpand() {
-
-  let allEntry = document.querySelectorAll('.entry')
-
-  if (expandBtn.innerHTML === '<h5>Expand All</h5>' && allEntry.length === 0) {
-    expandBtn.innerHTML = '<h5>Expand All</h5>'
-  } else if (expandBtn.innerHTML === '<h5>Expand All</h5>' && allEntry.length > 0) {
-    console.log('show something')
-    console.log(allEntry.length)
-    expandBtn.innerHTML = '<h5>Close All</h5>'
-    expandAll()
-  } else {
-    console.log('close them all')
-    expandBtn.innerHTML = '<h5>Expand All</h5>'
-  }
-
-}
 /* listen to note submit btn click */
 noteSubmit.addEventListener('click', (e) => {
   e.preventDefault()
@@ -302,7 +281,7 @@ noteSubmit.addEventListener('click', (e) => {
     noteInput.value = ""
   }
 })
-  // create new note entry
+/* create new note entry */
 function createNote() {
   // get current date and time
   const todayDate = new Date()
@@ -337,7 +316,7 @@ function createNote() {
 
   // Check if min is single digit
   let x = entry.min.toString()
-
+  // Add 0 in front of days with one digit
   if(x.length < 2) {
     entry.min = `0${entry.min}`
   }
@@ -346,17 +325,30 @@ function createNote() {
   noteIndex.textContent = entry.order
   noteDate.classList.add('note-date')
   noteDate.textContent =`${entry.date} ${entry.hour}:${entry.min}`
+  noteOpenBtn.classList.add('note-open-close')
   noteOpenBtn.innerHTML = '<i class="fa fa-angle-double-down"></i>'
   newNote.classList.add(`note-${entryNum}`)
   newNote.classList.add('entry')
   newNote.classList.add('collapse-height')
   noteEntry.textContent = entry.words
 
+
   newNoteHeader.append(noteIndex, noteDate, noteOpenBtn)
   newNote.append(newNoteHeader, noteEntry)
   entriesDisplay.prepend(newNote)
+
+  /* Add event listening to the single entry button */
+  noteOpenBtn.addEventListener('click', (e) => {
+
+    const listItem = e.target.parentNode.parentNode.parentNode
+    listItem.classList.toggle('collapse-height')
+
+  })
+
 }
 
+
+/* build expand all and close all functions */
 function expandAll() {
 
   let allEntry = document.querySelectorAll('.entry')
