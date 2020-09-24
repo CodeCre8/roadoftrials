@@ -206,7 +206,7 @@ function daysRemaining() {
 /* 
 * * * * * Display random quote 
 */
-const bkgdGradient = 'linear-gradient(to bottom, rgba(145, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),'
+const bkgdGradient = 'linear-gradient(to bottom, rgba(145, 246, 252, 0.52), rgba(117, 19, 93, 0.73))'
 const numItemsToGenerate = 1; 
 const numImagesAvailable = 27;
 const imageWidth = 480; 
@@ -218,6 +218,7 @@ let randomPhotoIndex = Math.floor(Math.random() * numImagesAvailable)
 const quoteBkgd = document.querySelector('.quote')
 const quoteDisplay = document.querySelector('.words')
 const authorDisplay = document.querySelector('.author')
+authorDisplay.classList.add('add-dash')
 const contributor = document.querySelector('.contributor')
 /* display random quote */
 function displayQuote() {

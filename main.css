@@ -83,11 +83,13 @@ Global Styles
 
 body {
   font-family: var(--ff-secondary);
-  background: var(--clr-grey-10);
+  background: linear-gradient(45deg, rgba(99, 240, 245, 0.52), rgba(145, 146, 179, 0.8)), url("img/blue-snow.png");
+  background-size: cover;
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 1.2rem;
   margin: 0 auto;
+  height: 100vh;
 }
 
 ul {
@@ -233,7 +235,7 @@ layout
   display: grid;
   -ms-flex-line-pack: center;
       align-content: center;
-  height: 100vh;
+  height: 95vh;
 }
 
 .modal .modal-container .modal-content {
@@ -603,7 +605,7 @@ layout
   color: var(--clr-lt-faded);
 }
 
-.quote .quote-container .author::before {
+.quote .quote-container .author .add-dash .author::before {
   content: "– ";
 }
 

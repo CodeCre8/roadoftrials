@@ -87,11 +87,14 @@ Global Styles
 }
 body {
   font-family: var(--ff-secondary);
-  background: var(--clr-grey-10);
+  // background: linear-gradient(to bottom, rgba(145, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
+  background: linear-gradient(45deg, rgba(99, 240, 245, 0.52), rgba(145, 146, 179, 0.8)), url('img/blue-snow.png');
+  background-size: cover;
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 1.2rem;
   margin: 0 auto;
+  height: 100vh;
 }
 ul {
   list-style-type: none;
@@ -221,7 +224,7 @@ layout
     position: relative;
     display: grid;
     align-content: center;
-    height: 100vh;
+    height: 95vh;
 
     .modal-content {
       width: 80vw;
@@ -546,8 +549,10 @@ layout
       font-style: italic;
       color: var(--clr-lt-faded);
 
-      &::before {
-        content: "– ";
+      .add-dash {
+        .author::before {
+          content: "– ";
+        }
       }
     }
   }
