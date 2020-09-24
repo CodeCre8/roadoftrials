@@ -163,7 +163,9 @@ a {
   outline: none;
   border: unset;
 }
-
+.opacity-0 {
+  opacity: 0;
+}
 /* 
 ===============
 layout 
@@ -519,17 +521,22 @@ layout
   background-position: cover;
   text-align: left;
   cursor: none;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
 
   // background: var(--clr-grey-8);
   .quote-container {
-    display: none;
+    // display: none;
+
     .wrods,
     .author {
       text-shadow: .5em .5em 0 0 rgba(0, 0, 0, 0.5);
     }
 
     .words {
-      font-size: clamp(2.4rem, 3vw, 4.2rem);
+      font-size: clamp(1.8rem, 2vw, 2.4rem);
       color: rgba(255, 255, 255, .7);
       margin-bottom: .5em;
       letter-spacing: .008em;

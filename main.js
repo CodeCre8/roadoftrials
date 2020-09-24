@@ -96,7 +96,6 @@ window.addEventListener('load', () => {
 
   /* display Timer */
   daysRemaining()
-  let countdown = setInterval(daysRemaining, 1000)
 
   /* modal functions */
   // openApp()
@@ -196,6 +195,8 @@ function daysRemaining() {
     until.innerHTML = format(timeRemain[index])
   })
   
+  let countdown = setInterval(daysRemaining, 1000)
+
   if(timeRemained < 0) {
     clearInterval(countdown)
     countdownContainer.innerHTML = `<h2>Happy 2021. Begin anew.</2>`
@@ -229,7 +230,6 @@ function displayQuote() {
     return wordNum
   }
   WordCount(selectedQuote)
-  console.log(wordNum)
   if(wordNum <= 9) {
     quoteDisplay.style.fontSize = 'clamp(2.8rem, 3.4vw, 4rem)'
   }
@@ -293,11 +293,11 @@ function noteAppDom() {
   <button id="note-submit" class="btn" type="sumbit">Submit</button>
 </form>`
   // expand all btn
-  // const expandAllBtn = `<div class="expand-btn"><h5>Expand All</h5></div>`
+  const expandAllBtn = `<div class="expand-btn opacity-0"><h5>Expand All</h5></div>`
   // entreies area
   const entriesDiv = `<div class="entries-area"><div class="entries-list"></div></div>`
 
-  appHeader.innerHTML = `${appForm}`
+  appHeader.innerHTML = `${appForm}${expandAllBtn}`
   appHeader.prepend(appTitle)
   appMain.innerHTML = `${entriesDiv}`
   
@@ -305,13 +305,32 @@ function noteAppDom() {
   modalContent.append(projectTitle, projectInfo, appArea)
   noteContainer.prepend(modalContent)
   
+  noteAppFun()
+}
+
+function noteAppFun() {
   /* select note HTML element */
   const noteInput = document.querySelector('#note-input')
   const noteSubmit = document.querySelector('#note-submit')
+  const expandBtn = document.querySelector('.expand-btn')
   const entriesDisplay = document.querySelector('.entries-list')
   let entries = []
   let entryNum = 0
 
+  /* listen for click on expand all btn */
+  // const expandBtn = document.querySelector('.expand-btn')
+  expandBtn.addEventListener('click', () => {
+
+    let btnState = expandBtn.innerHTML
+    if(btnState === '<h5>Expand All</h5>') {
+      console.log(expandBtn.innerHTML)
+      openAll()
+    }
+    if(btnState === '<h5>Close All</h5>') {
+      console.log(expandBtn.innerHTML)
+      closeAll()
+    }
+  })
   /* listen to note submit btn click */
   noteSubmit.addEventListener('click', (e) => {
     e.preventDefault()
@@ -357,23 +376,10 @@ function noteAppDom() {
     const newNote = document.createElement('div')
     const noteEntry = document.createElement('p')
     
-    // add expand all btn if there is any entry  
-    const expandAllBtn = document.createElement('div')
-    const expandBtnText = document.createElement('h5')
-    expandBtnText.textContent = 'Expand All'
-    expandAllBtn.classList.add('expand-btn')
-
-    if (entries.length === 1) {
-      expandAllBtn.append(expandBtnText)
-      appHeader.append(expandAllBtn)
+    // add expand all btn if there is any entry 
+    if(entries.length !== 0) {
+      expandBtn.classList.remove('opacity-0')
     }
-
-    /* listen for click on expand all btn */
-    // const expandBtn = document.querySelector('.expand-btn')
-    const expandBtn = document.querySelector('.expand-btn')
-    expandBtn.addEventListener('click', () => {
-      expandAll()
-    })
 
   // Check if min is single digit
     let x = entry.min.toString()
@@ -402,34 +408,23 @@ function noteAppDom() {
       const listItem = e.target.parentNode.parentNode.parentNode
       listItem.classList.toggle('collapse-height')
     })
-
-    /* build expand all and close all functions */
-    function expandAll() {
-
-      let allEntry = document.querySelectorAll('.entry')
-
-      if (expandBtn.innerHTML === '<h5>Expand All</h5>' && allEntry.length > 0) {
-
-        expandBtn.innerHTML = '<h5>Close All</h5>'
-
-        allEntry.forEach(item => {
-          if(item.classList.contains('collapse-height')) {
-            item.classList.remove('collapse-height')
-          } 
-        })
-
-      } else if (expandBtn.innerHTML === '<h5>Close All</h5>' && allEntry.length > 0) {
-
-        allEntry.forEach(item => {
-          item.classList.add('collapse-height')
-        })
-
-        expandBtn.innerHTML = '<h5>Expand All</h5>'
-      }
-    }
   }
-
+  function openAll() {
+    expandBtn.innerHTML = '<h5>Close All</h5>'
+    let allEntries = document.querySelectorAll('.entry')
+    allEntries.forEach(list => {
+      list.classList.remove('collapse-height')
+    })
+  }
+  function closeAll() {
+    expandBtn.innerHTML = '<h5>Expand All</h5>'
+    let allEntries = document.querySelectorAll('.entry')
+    allEntries.forEach(list => {
+      list.classList.add('collapse-height')
+    })
+  }
 }
+
 
 
 /*
